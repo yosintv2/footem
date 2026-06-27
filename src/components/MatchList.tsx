@@ -125,8 +125,8 @@ export default function MatchList({ apiUrl, title, isCricket }: Props) {
           margin: 0 auto;
           padding: 0 0.75rem 3rem;
         }
-        .ml-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
-        .ml-header h1 { font-size: 20px; font-weight: 800; color: #222; flex-shrink: 0; }
+        .ml-header { margin-bottom: 16px; }
+        .ml-header h1 { font-size: 20px; font-weight: 800; color: #222; margin-bottom: 4px; }
         .ml-header .share-wrap { padding: 0; }
         .ml-loading, .ml-empty { text-align: center; padding: 40px 0; color: #888; font-size: 15px; }
 
