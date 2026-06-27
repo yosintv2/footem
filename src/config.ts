@@ -19,7 +19,7 @@ export const config = {
     articles: 'https://cdn.singhs.com.np/api/articles.json',
   },
   features: {
-    showLeagueContainer: true,
+    showLeagueContainer: false,
   },
   ads: {
     google: {
