@@ -126,7 +126,7 @@ export default function MatchList({ apiUrl, title, isCricket }: Props) {
           padding: 0 0.75rem 3rem;
         }
         .ml-header { margin-bottom: 16px; }
-        .ml-header h1 { font-size: clamp(16px, 5vw, 24px); font-weight: 800; color: #222; margin-bottom: 4px; }
+        .ml-header h1 { font-size: 20px; font-weight: 800; color: #222; margin-bottom: 4px; }
         .ml-header .share-wrap { padding: 0; }
         .ml-loading, .ml-empty { text-align: center; padding: 40px 0; color: #888; font-size: 15px; }
 
@@ -139,33 +139,20 @@ export default function MatchList({ apiUrl, title, isCricket }: Props) {
           overflow-x: auto;
           scrollbar-width: none;
           -webkit-overflow-scrolling: touch;
-          align-items: center;
         }
         .ml-league-filters::-webkit-scrollbar { display: none; }
         .ml-filter-btn {
           flex-shrink: 0;
-          padding: 6px 14px;
+          padding: 5px 14px;
           border: 2px solid #ddd;
           border-radius: 20px;
           background: #fff;
           color: #666;
-          font-size: clamp(11px, 2.8vw, 13px);
+          font-size: 12px;
           font-weight: 600;
           cursor: pointer;
-          touch-action: manipulation;
-          white-space: nowrap;
         }
         .ml-filter-btn.active { background: #ff0037; border-color: #ff0037; color: #fff; }
-        .ml-filter-share {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 4px;
-          border-color: #1877F2;
-          color: #1877F2;
-          padding: 6px 12px;
-        }
-        .ml-filter-share svg { width: 14px; height: 14px; flex-shrink: 0; }
 
         .match-card {
           display: block;
@@ -217,10 +204,6 @@ export default function MatchList({ apiUrl, title, isCricket }: Props) {
 
       {leagues.length > 1 && (
         <div class="ml-league-filters">
-          <button class="ml-filter-btn ml-filter-share" onClick={() => { if (typeof navigator !== 'undefined' && navigator.share) { navigator.share({ title: title, url: window.location.href }); } else { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank'); } }} title="Share this page">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
-            Share
-          </button>
           <button class={`ml-filter-btn${activeLeague === 'All' ? ' active' : ''}`} onClick={() => setActiveLeague('All')}>All</button>
           {leagues.map(lg => (
             <button key={lg} class={`ml-filter-btn${activeLeague === lg ? ' active' : ''}`} onClick={() => setActiveLeague(lg)}>{lg}</button>
