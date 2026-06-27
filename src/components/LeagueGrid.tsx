@@ -26,12 +26,6 @@ export default function LeagueGrid() {
       .catch(() => setData(null));
   }, [tab]);
 
-  useEffect(() => {
-    try {
-      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
-    } catch {}
-  }, []);
-
   return (
     <div class="league-wrap">
       <style>{`
@@ -115,15 +109,6 @@ export default function LeagueGrid() {
           font-size: 14px;
         }
       `}</style>
-
-      <div style={{ textAlign: 'center', padding: '8px 0' }}>
-        <ins class="adsbygoogle"
-             style={{ display: 'block' }}
-             data-ad-client={config.ads.google.client}
-             data-ad-slot={config.ads.google.slots.responsive}
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-      </div>
 
       <div class="league-header">
         <h2>{data?.title || 'All Football Events'}</h2>
