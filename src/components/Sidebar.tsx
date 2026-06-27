@@ -29,6 +29,7 @@ export default function Sidebar() {
     } catch {}
   }, []);
 
+  const resolvePath = (path: string) => config.base ? config.base + path : path;
   const apkUrl = config.links.apk;
   const telegramUrl = config.links.social.telegram;
   const adClient = config.ads.google.client;
@@ -162,7 +163,7 @@ export default function Sidebar() {
         <div className="sidebar-widget-title">Recent Posts</div>
         <div className="sidebar-widget-body">
           {articleList.map((a) => (
-            <a key={a.slug} href={`/story/${a.slug}`} className="sidebar-post-item">
+            <a key={a.slug} href={resolvePath(`/story/${a.slug}`)} className="sidebar-post-item">
               <div className="sidebar-post-content">
                 <div className="sidebar-post-title">{a.title}</div>
                 <div className="sidebar-post-date">{a.publishedAt}</div>

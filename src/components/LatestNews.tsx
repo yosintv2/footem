@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { config } from '../config';
 
+const resolvePath = (path: string) => config.base ? config.base + path : path;
+
 interface Article {
   slug: string;
   title: string;
@@ -119,7 +121,7 @@ export default function LatestNews() {
       </div>
 
       {articles.map((article) => (
-          <a key={article.slug} href={`/story/${article.slug}`} class="ln-item">
+          <a key={article.slug} href={resolvePath(`/story/${article.slug}`)} class="ln-item">
           {article.labels?.[0] && <span class="ln-label">{article.labels[0]}</span>}
           <div class="ln-title">{article.title}</div>
           <div class="ln-snippet">{article.snippet}</div>

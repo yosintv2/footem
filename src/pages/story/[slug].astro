@@ -4,24 +4,24 @@ import Sidebar from '../../components/Sidebar';
 import LatestNews from '../../components/LatestNews';
 import { config } from '../../config';
 
-export const prerender = false;
+export async function getStaticPaths() {
+  try {
+    const res = await fetch(config.api.articles);
+    if (!res.ok) return [];
+    const articles = await res.json();
+    return articles.map((a: any) => ({
+      params: { slug: a.slug },
+      props: { article: a },
+    }));
+  } catch {
+    return [];
+  }
+}
 
+const { article } = Astro.props;
 const { slug } = Astro.params;
 
 const SVGArrowLeft = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor"><path d="M872 474H286.9l350.2-304c5.6-4.9 2.2-14-5.2-14h-88.5c-3.9 0-7.6 1.4-10.5 3.9L155 487.8a31.96 31.96 0 000 48.3L535.1 866c1.5 1.3 3.3 2 5.2 2h91.5c7.4 0 10.8-9.2 5.2-14L286.9 550H872c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8z"/></svg>';
-
-let article: {
-  slug: string; title: string; snippet: string; content: string[];
-  publishedAt: string; author: string; labels: string[];
-} | null = null;
-
-try {
-  const res = await fetch(config.api.articles);
-  if (res.ok) {
-    const articles = await res.json();
-    article = articles.find((a: any) => a.slug === slug) || null;
-  }
-} catch (e) {}
 
 const readingTime = article?.content
   ? Math.ceil(article.content.join(' ').split(' ').length / 200)
@@ -110,7 +110,7 @@ const readingTime = article?.content
 
   <div class="story-page-wrap">
     <div class="story-breadcrumb">
-      <a href="/"><span set:html={SVGArrowLeft} /> Back to Home</a>
+      <a href={config.base || '/'}><span set:html={SVGArrowLeft} /> Back to Home</a>
     </div>
 
     <div class="story-layout">
@@ -140,7 +140,7 @@ const readingTime = article?.content
         ) : (
           <div class="story-not-found">
             <h2>Article not found</h2>
-            <a href="/">← Back to Home</a>
+            <a href={config.base || '/'}>← Back to Home</a>
           </div>
         )}
         <LatestNews client:only="react" />

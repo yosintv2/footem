@@ -44,8 +44,10 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const resolvePath = (path: string) => config.base ? config.base + path : path;
+
   const handleMenuClick = (info: { key: string }) => {
-    window.location.href = info.key;
+    window.location.href = resolvePath(info.key);
     setDrawerOpen(false);
   };
 
@@ -227,7 +229,7 @@ export default function Header() {
 
       <header className={`yosin-header ${scrolled ? 'scrolled' : ''}`}>
         <div className="yosin-header-inner">
-          <div className="yosin-logo" onClick={() => window.location.href = '/'}>
+          <div className="yosin-logo" onClick={() => window.location.href = resolvePath('/')}>
             <img src={config.site.logoUrl} alt={config.site.name} style={{ height: 52, width: 'auto' }} />
           </div>
 
@@ -235,14 +237,14 @@ export default function Header() {
             <ul className="yosin-nav-desktop">
               {menuItems.map((item) => (
                 <li key={item.key} className={'children' in item ? 'has-dropdown' : ''}>
-                  <a href={item.key}>
+                  <a href={resolvePath(item.key)}>
                     <span dangerouslySetInnerHTML={{ __html: item.icon }} />
                     {item.label}
                   </a>
                   {'children' in item && (
                     <div className="dropdown-content">
                       {(item.children as Array<{ key: string; label: string }>).map((child) => (
-                        <a key={child.key} href={child.key}>{child.label}</a>
+                        <a key={child.key} href={resolvePath(child.key)}>{child.label}</a>
                       ))}
                     </div>
                   )}
@@ -298,7 +300,7 @@ export default function Header() {
             <div key={item.key}>
               <div className="drawer-menu-item" onClick={() => {
                 if (!('children' in item)) {
-                  window.location.href = item.key;
+                  window.location.href = resolvePath(item.key);
                   setDrawerOpen(false);
                 }
               }}>
@@ -311,7 +313,7 @@ export default function Header() {
                     <div
                       key={child.key}
                       className="drawer-menu-item"
-                      onClick={() => { window.location.href = child.key; setDrawerOpen(false); }}
+                      onClick={() => { window.location.href = resolvePath(child.key); setDrawerOpen(false); }}
                     >
                       {child.label}
                     </div>

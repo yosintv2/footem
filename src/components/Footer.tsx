@@ -9,6 +9,11 @@ const SVGTwitter = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 10
 const SVGFacebook = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor"><path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-32 736H663.9V602.2h104l15.6-120.7H663.9v-77.1c0-35 9.7-58.8 59.8-58.8h63.9v-108c-11.1-1.5-49-4.8-93.2-4.8-92.2 0-155.3 56.3-155.3 159.6v89H434.9v120.7h104.3V848H176V176h672v672z"/></svg>';
 const SVGInstagram = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor"><path d="M512 306.9c-113.5 0-205.1 91.6-205.1 205.1S398.5 717.1 512 717.1 717.1 625.5 717.1 512 625.5 306.9 512 306.9zm0 338.4c-73.4 0-133.3-59.9-133.3-133.3S438.6 378.7 512 378.7 645.3 438.6 645.3 512 585.4 645.3 512 645.3zm213.5-394.6c-26.5 0-47.9 21.4-47.9 47.9s21.4 47.9 47.9 47.9 47.9-21.3 47.9-47.9-21.4-47.9-47.9-47.9zM911.8 512c0-55.2.5-109.9-2.6-165-3.1-64-17.7-120.8-64.5-167.6-46.9-46.9-103.6-61.4-167.6-64.5-55.1-3.1-109.8-2.6-165-2.6s-109.9-.5-165 2.6c-64 3.1-120.8 17.7-167.6 64.5C132.6 226.3 118.1 283 115 347c-3.1 55.1-2.6 109.8-2.6 165s-.5 109.9 2.6 165c3.1 64 17.7 120.8 64.5 167.6 46.9 46.9 103.6 61.4 167.6 64.5 55.1 3.1 109.8 2.6 165 2.6s109.9.5 165-2.6c64-3.1 120.8-17.7 167.6-64.5 46.9-46.9 61.4-103.6 64.5-167.6 3.1-55.1 2.6-109.8 2.6-165zM832 713.1c-18.8 48-55.8 85-103.9 103.9-38.4 15.1-88.6 20.6-216.1 20.6s-177.7-5.5-216.1-20.6c-48.1-18.9-85-55.9-103.9-103.9-15.1-38.4-20.6-88.6-20.6-216.1s5.5-177.7 20.6-216.1c18.9-48 55.9-85 103.9-103.9 38.4-15.1 88.6-20.6 216.1-20.6s177.7 5.5 216.1 20.6c48.1 18.9 85 55.9 103.9 103.9 15.1 38.4 20.6 88.6 20.6 216.1s-5.5 177.7-20.6 216.1z"/></svg>';
 
+const resolvePath = (path: string) => {
+  if (path.startsWith('http') || path.startsWith('//')) return path;
+  return config.base ? config.base + path : path;
+};
+
 export default function Footer() {
   return (
     <>
@@ -147,7 +152,7 @@ export default function Footer() {
             <h4>{config.footer.sections.cricket.heading}</h4>
             <ul className="yosin-footer-links">
               {config.footer.sections.cricket.links.map(l => (
-                <li key={l.href}><a href={l.href}>{l.label}</a></li>
+                <li key={l.href}><a href={resolvePath(l.href)}>{l.label}</a></li>
               ))}
             </ul>
           </div>
@@ -156,7 +161,7 @@ export default function Footer() {
             <h4>{config.footer.sections.football.heading}</h4>
             <ul className="yosin-footer-links">
               {config.footer.sections.football.links.map(l => (
-                <li key={l.href}><a href={l.href}>{l.label}</a></li>
+                <li key={l.href}><a href={resolvePath(l.href)}>{l.label}</a></li>
               ))}
             </ul>
           </div>
@@ -165,7 +170,7 @@ export default function Footer() {
             <h4>{config.footer.sections.quickLinks.heading}</h4>
             <ul className="yosin-footer-links">
               {config.footer.sections.quickLinks.links.map(l => (
-                <li key={l.href}><a href={l.href}>{l.label}</a></li>
+                <li key={l.href}><a href={resolvePath(l.href)}>{l.label}</a></li>
               ))}
             </ul>
           </div>
