@@ -33,7 +33,7 @@ import { config } from '../config';
 
     <div class="page-layout">
       <div class="match-sidebar-layout">
-        <LeagueGrid client:only="react" />
+        {config.features.showLeagueContainer && <LeagueGrid client:only="react" />}
         <Sidebar client:only="react" />
       </div>
 
