@@ -36,8 +36,41 @@ const { title = `${config.site.name} - ${config.site.tagline}`, description = co
   <link href={config.fonts.css} rel="stylesheet" />
   <link rel="alternate" type="application/rss+xml" title={`${config.site.name} &raquo; Feed`} href={config.links.rss} />
   <script async src={`${config.ads.google.scriptUrl}?client=${config.ads.google.client}`} crossorigin="anonymous"></script>
+  <script is:inline>
+    (function(){
+      var bait = document.createElement('div');
+      bait.innerHTML = '&nbsp;';
+      bait.className = 'ad-bait';
+      bait.style.position = 'absolute';
+      bait.style.left = '-9999px';
+      bait.style.width = '1px';
+      bait.style.height = '1px';
+      document.body.appendChild(bait);
+      window.addEventListener('load', function(){
+        setTimeout(function(){
+          var detected = false;
+          if (bait.offsetParent === null || bait.offsetHeight === 0) detected = true;
+          var adBox = document.querySelector('.adsbygoogle');
+          if (adBox && (adBox.offsetHeight === 0 || adBox.offsetParent === null)) detected = true;
+          if (detected) {
+            var el = document.getElementById('adblock-popup');
+            if (el) el.style.display = 'flex';
+          }
+          bait.remove();
+        }, 2000);
+      });
+    })();
+  </script>
 </head>
 <body>
+  <div id="adblock-popup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:99999;justify-content:center;align-items:center;">
+    <div style="background:#fff;border-radius:12px;padding:40px 32px;max-width:400px;width:90%;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+      <div style="font-size:48px;margin-bottom:16px;">⚠️</div>
+      <h2 style="margin:0 0 8px;font-size:22px;color:#222;font-weight:800;">AdBlock Detected</h2>
+      <p style="margin:0 0 24px;font-size:15px;color:#666;line-height:1.6;">Please disable your adblocker to support our website and enjoy the best experience.</p>
+      <button onclick="document.getElementById('adblock-popup').style.display='none'" style="background:#ff0037;color:#fff;border:none;padding:12px 32px;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;">I've Disabled AdBlock</button>
+    </div>
+  </div>
   <div style="position:fixed;top:0;left:0;width:100%;height:1px;overflow:hidden;visibility:hidden;z-index:9999;">
     <script type="text/javascript" src="//widget.supercounters.com/ssl/online_i.js"></script>
     <script type="text/javascript">sc_online_i(1714446,"ffffff","ffffff");</script>
