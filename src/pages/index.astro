@@ -1,16 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Sidebar from '../components/Sidebar';
-import { getPosts, getCategories, formatDate } from '../lib/wordpress';
-
-const SVGCalendar = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor"><path d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"/></svg>';
-const SVGUser = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor"><path d="M858.5 763.6a374 374 0 00-80.6-119.5 375.63 375.63 0 00-119.5-80.6c-.4-.2-.8-.3-1.2-.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1-.4.2-.8.3-1.2.5-44.8 18.9-85 46-119.5 80.6a375.63 375.63 0 00-80.6 119.5A371.7 371.7 0 00136 901.8a8 8 0 008 8.2h60c4.4 0 7.9-3.5 8-7.8 2-77.2 33-149.5 87.8-204.3 56.7-56.7 132-87.9 212.2-87.9s155.5 31.2 212.2 87.9C779 752.7 810 825 812 902.2c.1 4.4 3.6 7.8 8 7.8h60a8 8 0 008-8.2c-1-47.8-10.9-94.3-29.5-138.2zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z"/></svg>';
-
-const posts = await getPosts(1, 12);
-const categories = await getCategories();
+import LeagueGrid from '../components/LeagueGrid';
+import LatestNews from '../components/LatestNews';
+import { config } from '../config';
 ---
 
-<Layout title="YoSinTV - FIFA World Cup 2026 | Playing XI | Football News">
+<Layout title={`${config.site.name} - ${config.site.tagline}`}>
   <div class="home-wrap">
     <style>
       .home-wrap {
@@ -21,148 +17,27 @@ const categories = await getCategories();
         margin: 0 auto;
         padding: 0 16px;
       }
-      .main-layout {
+      .match-sidebar-layout {
         display: grid;
         grid-template-columns: 1fr;
         gap: 32px;
-        padding: 24px 0 60px;
-      }
-      .home-article {
-        background: #fff;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        overflow: hidden;
-      }
-      .home-article-header {
-        padding: 24px 32px 0;
-      }
-      .home-article-header h1 {
-        font-size: 28px;
-        font-weight: 800;
-        color: #222;
-        margin-bottom: 16px;
-      }
-      .home-article-header .home-meta {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 20px;
-        color: #888;
-        font-size: 14px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid #e0e0e0;
-      }
-      .home-article-header .home-meta span {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
-      .post-list-item {
-        padding: 16px 32px;
-        border-bottom: 1px solid #eee;
-        transition: background 0.15s;
-      }
-      .post-list-item:last-child {
-        border-bottom: none;
-      }
-      .post-list-item:hover {
-        background: #fafafa;
-      }
-      .post-list-cat {
-        display: inline-block;
-        background: #ff0037;
-        color: #fff;
-        padding: 2px 10px;
-        border-radius: 3px;
-        font-size: 10px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.3px;
-        margin-bottom: 6px;
-      }
-      .post-list-title {
-        font-size: 16px;
-        font-weight: 600;
-        color: #333;
-        line-height: 1.4;
-        margin-bottom: 6px;
-      }
-      .post-list-title a {
-        color: inherit;
-      }
-      .post-list-title a:hover {
-        color: #ff0037;
-      }
-      .post-list-meta {
-        font-size: 12px;
-        color: #999;
-      }
-      .post-list-meta span {
-        margin-right: 12px;
-      }
-      .view-all {
-        display: block;
-        text-align: center;
-        padding: 16px 32px;
-        border-top: 1px solid #eee;
-        color: #ff0037;
-        font-weight: 600;
-        font-size: 14px;
-        transition: all 0.2s;
-      }
-      .view-all:hover {
-        background: #fafafa;
-        color: #ff0037;
+        padding: 24px 0;
       }
 
       @media (min-width: 900px) {
-        .main-layout {
+        .match-sidebar-layout {
           grid-template-columns: 1fr 320px;
         }
-      }
-      @media (max-width: 768px) {
-        .home-article-header { padding: 20px 20px 0; }
-        .home-article-header h1 { font-size: 22px; }
-        .post-list-item { padding: 14px 20px; }
-        .view-all { padding: 14px 20px; }
       }
     </style>
 
     <div class="page-layout">
-      <div class="main-layout">
-        <div class="home-article">
-          <div class="home-article-header">
-            <h1>Latest News</h1>
-            <div class="home-meta">
-              <span><span set:html={SVGCalendar} /> {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-              <span><span set:html={SVGUser} /> YoSinTV Staff</span>
-              <span>{posts.length} articles</span>
-            </div>
-          </div>
-
-          {posts.slice(0, 10).map((post) => {
-            const category = post._embedded?.['wp:term']?.[0]?.[0];
-            const title = post.title.rendered;
-            const date = formatDate(post.date);
-            return (
-              <div class="post-list-item">
-                {category && <span class="post-list-cat">{category.name}</span>}
-                <h3 class="post-list-title">
-                  <a href={`/blog/${post.slug}`}>{title}</a>
-                </h3>
-                <div class="post-list-meta">
-                  <span>Admin</span>
-                  <span>{date}</span>
-                </div>
-              </div>
-            );
-          })}
-
-          <a href="/blog" class="view-all">View All Posts →</a>
-        </div>
-
-        <Sidebar categories={categories} recentPosts={posts} client:only="react" />
+      <div class="match-sidebar-layout">
+        <LeagueGrid client:only="react" />
+        <Sidebar client:only="react" />
       </div>
+
+      <LatestNews client:only="react" />
     </div>
   </div>
 </Layout>

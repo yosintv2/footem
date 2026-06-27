@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { config } from '../config';
 import '../styles/global.css';
 
 export interface Props {
@@ -9,37 +10,66 @@ export interface Props {
   image?: string;
 }
 
-const { title = 'YoSinTV - FIFA World Cup 2026 | Playing XI | Football News', description = 'YoSinTV is sports website that covers all the Cricket Matches, World Cup, International/Domestic Matches, Football Matches, etc.', image } = Astro.props;
+const { title = `${config.site.name} - ${config.site.tagline}`, description = config.site.description, image } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang={config.site.locale}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale" content={config.site.ogLocale} />
   <meta property="og:type" content="website" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:url" content="https://www.yosin-tv.net" />
-  <meta property="og:site_name" content="YoSinTV" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:url" content={config.site.url} />
+  <meta property="og:site_name" content={config.site.name} />
+  <meta name="twitter:card" content={config.site.twitterCard} />
   {image && <meta property="og:image" content={image} />}
-  <meta name="robots" content="follow, index" />
-  <link rel="canonical" href="https://www.yosin-tv.net" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="alternate" type="application/rss+xml" title="YoSinTV &raquo; Feed" href="https://www.yosin-tv.net/feed/" />
+  <meta name="robots" content={config.site.robots} />
+  <link rel="canonical" href={config.site.url} />
+  <link rel="icon" type="image/x-icon" href={config.site.favicon} />
+  <link rel="preconnect" href={config.fonts.preconnect[0]} />
+  <link rel="preconnect" href={config.fonts.preconnect[1]} crossorigin />
+  <link href={config.fonts.css} rel="stylesheet" />
+  <link rel="alternate" type="application/rss+xml" title={`${config.site.name} &raquo; Feed`} href={config.links.rss} />
+  <script async src={`${config.ads.google.scriptUrl}?client=${config.ads.google.client}`} crossorigin="anonymous"></script>
 </head>
 <body>
+  <div style="position:fixed;top:0;left:0;width:100%;height:1px;overflow:hidden;visibility:hidden;z-index:9999;">
+    <script type="text/javascript" src="//widget.supercounters.com/ssl/online_i.js"></script>
+    <script type="text/javascript">sc_online_i(1714446,"ffffff","ffffff");</script>
+    <script id="_wau9qe">var _wau = _wau || []; _wau.push(["dynamic", "1qzxz258so", "9qe", "c4302bffffff", "small"]);</script>
+    <script async src="//waust.at/d.js"></script>
+  </div>
   <Header client:only="react" />
+  <div style="text-align:center;padding:8px 0;">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client={config.ads.google.client}
+         data-ad-slot={config.ads.google.slots.responsive}
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script is:inline>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
   <main>
     <slot />
   </main>
+  <div style="text-align:center;padding:8px 0;">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client={config.ads.google.client}
+         data-ad-slot={config.ads.google.slots.responsive}
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script is:inline>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
   <Footer client:only="react" />
 </body>
 </html>

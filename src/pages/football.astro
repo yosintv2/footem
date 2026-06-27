@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MatchList from '../components/MatchList';
+import Sidebar from '../components/Sidebar';
+import LatestNews from '../components/LatestNews';
+import { config } from '../config';
+---
+
+<Layout   title={`Football Matches - ${config.site.name}`}>
+  <div class="page-wrap">
+    <style>
+      .page-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 16px;
+        background: #fff;
+      }
+      .content-sidebar-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 24px 0 60px;
+      }
+      @media (min-width: 900px) {
+        .content-sidebar-layout {
+          grid-template-columns: 1fr 320px;
+        }
+      }
+    </style>
+
+    <div class="content-sidebar-layout">
+      <div>
+        <MatchList
+          apiUrl={config.api.football}
+          title="Football Matches"
+          client:only="react"
+        />
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:320px;height:50px"
+             data-ad-client={config.ads.google.client}
+             data-ad-slot={config.ads.google.slots.betweenMatch}></ins>
+        <script is:inline>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <LatestNews client:only="react" />
+      </div>
+      <Sidebar client:only="react" />
+    </div>
+  </div>
+</Layout>

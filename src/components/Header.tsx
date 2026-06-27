@@ -1,44 +1,37 @@
 import { useState, useEffect } from 'react';
-import { Layout, Menu, Button, Drawer, Space, Typography } from 'antd';
-import {
-  MenuOutlined,
-  CloseOutlined,
-  DownloadOutlined,
-  SendOutlined,
-  FireOutlined,
-  TrophyOutlined,
-  HomeOutlined,
-  FileTextOutlined,
-} from '@ant-design/icons';
+import { Button, Drawer, Space } from 'antd';
+import { config } from '../config';
 
-const { Text } = Typography;
+const SVGHome = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor"><path d="M946.5 505L560.1 118.8l-25.9-25.9a31.5 31.5 0 00-44.4 0L77.5 505a63.9 63.9 0 00-18.8 46c-.4 35.2 28.6 64 64 64h48.6V908c0 17.7 14.3 32 32 32H388V732h119.9v208h184.7c17.7 0 32-14.3 32-32V614.9H864c35.4 0 64.4-28.8 64-64-.2-17.3-7.1-33.7-18.5-45.9z"/></svg>';
+const SVGCricket = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor"><path d="M874.1 164.6a48 48 0 00-67.9-1.5L531.8 406.1c-3.4 2.7-5.5 6.5-6.3 10.5-2.6 10.8 4.5 21.4 15.4 21.4 2.5 0 5-.5 7.4-1.6L872.6 232.5a48 48 0 001.5-67.9zM512 448c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm-80 80c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm-80 80c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm304-32c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm-80 80c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32z"/></svg>';
+const SVGSoccer = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm221.7 641.3c-57.8 58.1-134.5 89.7-215.7 87.4-81.2 2.3-157.9-29.3-215.7-87.4-57.8-58.1-89.7-134.5-87.4-215.7-2.3-81.2 29.3-157.9 87.4-215.7 58.1-57.8 134.5-89.7 215.7-87.4 81.2-2.3 157.9 29.3 215.7 87.4 57.8 58.1 89.7 134.5 87.4 215.7 2.3 81.2-29.3 157.9-87.4 215.7zM512 736c-121.6 0-224-102.4-224-224s102.4-224 224-224 224 102.4 224 224-102.4 224-224 224zm0-384c-88.4 0-160 71.6-160 160s71.6 160 160 160 160-71.6 160-160-71.6-160-160-160z"/></svg>';
+const SVGArticle = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor"><path d="M864 64H160C107 64 64 107 64 160v704c0 53 43 96 96 96h704c53 0 96-43 96-96V160c0-53-43-96-96-96zM832 832c0 17.7-14.3 32-32 32H224c-17.7 0-32-14.3-32-32V192c0-17.7 14.3-32 32-32h576c17.7 0 32 14.3 32 32v640zM320 288h384v64H320v-64zm0 160h384v64H320v-64zm0 160h256v64H320v-64z"/></svg>';
+const SVGSend = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor"><path d="M931.4 498.9L94.9 79.5c-3.4-1.7-7.3-2.1-11-1.2-8.5 2.1-13.8 10.7-11.7 19.3l86.2 352.2c1.3 5.3 5.2 9.6 10.4 11.3l147.7 50.7-147.6 50.7c-5.2 1.8-9.1 6-10.3 11.3L72.2 926.5c-2.2 8.6 3.1 17.2 11.7 19.3 1.3.3 2.6.5 3.9.5 3.2 0 6.4-1 9.1-2.8l836.5-419.4c3.3-1.6 5.6-5 5.6-8.7s-2.3-7.1-5.6-8.7zM170.8 826.3l50.3-205.6 295.2-101.3c2.3-.8 4.2-2.6 5-5 1.4-4.2-.8-8.7-5-10.2L221.1 403.3 170.8 197.7l618.4 310.2-618.4 318.4z"/></svg>';
+const SVGDownload = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor"><path d="M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"/></svg>';
+const SVGMenu = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor"><path d="M904 160H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0 624H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0-312H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8z"/></svg>';
+const SVGClose = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9c-4.4 5.2-.7 13.1 6.1 13.1h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"/></svg>';
 
 const menuItems = [
-  { key: '/', label: 'Home', icon: <HomeOutlined /> },
+  { key: '/', label: 'Home', icon: SVGHome },
   {
     key: 'cricket',
     label: 'Cricket',
-    icon: <TrophyOutlined />,
+    icon: SVGCricket,
     children: [
-      { key: '/category/cricket', label: 'All Cricket' },
-      { key: '/category/t20-world-cup-2026', label: 'T20 World Cup 2026' },
-      { key: '/category/ipl', label: 'IPL' },
-      { key: '/category/playing-xi', label: 'Playing XI' },
+      { key: '/cricket', label: 'All Cricket' },
+      { key: '/cricket', label: 'T20 World Cup 2026' },
     ],
   },
   {
     key: 'football',
     label: 'Football',
-    icon: <FireOutlined />,
+    icon: SVGSoccer,
     children: [
-      { key: '/category/football', label: 'All Football' },
-      { key: '/category/premier-league', label: 'Premier League' },
-      { key: '/category/champions-league', label: 'Champions League' },
-      { key: '/category/laliga', label: 'La Liga' },
-      { key: '/category/fifa-world-cup-2026', label: 'FIFA World Cup 2026' },
+      { key: '/football', label: 'All Football' },
+      { key: '/football', label: 'FIFA World Cup 2026' },
     ],
   },
-  { key: '/blog', label: 'Blog', icon: <FileTextOutlined /> },
+  { key: '/', label: 'Articles', icon: SVGArticle },
 ];
 
 export default function Header() {
@@ -102,17 +95,18 @@ export default function Header() {
           justify-content: center;
           width: 40px;
           height: 40px;
-          background: rgba(255, 255, 255, 0.05);
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: rgba(0, 0, 0, 0.03);
+          border: 1px solid rgba(0, 0, 0, 0.1);
           border-radius: 8px;
           cursor: pointer;
-          color: #fff;
+          color: #333;
           font-size: 18px;
           transition: all 0.2s;
         }
         .yosin-mobile-btn:hover {
-          background: rgba(255, 0, 55, 0.2);
+          background: rgba(255, 0, 55, 0.08);
           border-color: #ff0037;
+          color: #ff0037;
         }
         .yosin-nav-desktop {
           display: flex;
@@ -128,27 +122,27 @@ export default function Header() {
           align-items: center;
           gap: 6px;
           padding: 8px 14px;
-          color: #ccc;
+          color: #555;
           font-size: 14px;
           font-weight: 500;
           border-radius: 6px;
           transition: all 0.2s;
         }
         .yosin-nav-desktop a:hover {
-          color: #fff;
-          background: rgba(255, 0, 55, 0.15);
+          color: #ff0037;
+          background: rgba(255, 0, 55, 0.08);
         }
         .yosin-nav-desktop .dropdown-content {
           display: none;
           position: absolute;
           top: 100%;
           left: 0;
-          background: #1a1a1a;
-          border: 1px solid #2a2a2a;
+          background: #fff;
+          border: 1px solid #e0e0e0;
           border-radius: 8px;
           padding: 8px;
           min-width: 200px;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+          box-shadow: 0 8px 32px rgba(0,0,0,0.1);
           z-index: 100;
         }
         .yosin-nav-desktop li:hover .dropdown-content {
@@ -159,8 +153,8 @@ export default function Header() {
           border-radius: 4px;
         }
         .yosin-nav-desktop .dropdown-content a:hover {
-          background: rgba(255, 0, 55, 0.2);
-          color: #fff;
+          background: rgba(255, 0, 55, 0.08);
+          color: #ff0037;
         }
         .yosin-nav-desktop .has-dropdown > a::after {
           content: '▾';
@@ -203,14 +197,14 @@ export default function Header() {
           align-items: center;
           gap: 12px;
           padding: 12px 16px;
-          color: #fff;
+          color: #444;
           font-size: 15px;
           border-radius: 8px;
           cursor: pointer;
           transition: all 0.2s;
         }
         .drawer-menu-item:hover {
-          background: rgba(255, 0, 55, 0.15);
+          background: rgba(255, 0, 55, 0.06);
           color: #ff0037;
         }
         .drawer-submenu {
@@ -234,7 +228,7 @@ export default function Header() {
       <header className={`yosin-header ${scrolled ? 'scrolled' : ''}`}>
         <div className="yosin-header-inner">
           <div className="yosin-logo" onClick={() => window.location.href = '/'}>
-            <img src="https://www.yosintv.net/logo.png" alt="YoSinTV" style={{ height: 36, width: 'auto' }} />
+            <img src={config.site.logoUrl} alt={config.site.name} style={{ height: 52, width: 'auto' }} />
           </div>
 
           <nav className="yosin-nav">
@@ -242,7 +236,7 @@ export default function Header() {
               {menuItems.map((item) => (
                 <li key={item.key} className={'children' in item ? 'has-dropdown' : ''}>
                   <a href={item.key}>
-                    {item.icon}
+                    <span dangerouslySetInnerHTML={{ __html: item.icon }} />
                     {item.label}
                   </a>
                   {'children' in item && (
@@ -260,8 +254,8 @@ export default function Header() {
           <div className="yosin-actions">
             <Button
               className="header-btn-telegram"
-              icon={<SendOutlined />}
-              href="https://t.me/yosintvlive"
+              icon={<span dangerouslySetInnerHTML={{ __html: SVGSend }} />}
+              href={config.links.social.telegram}
               target="_blank"
               size="small"
             >
@@ -269,15 +263,15 @@ export default function Header() {
             </Button>
             <Button
               className="header-btn-apk"
-              icon={<DownloadOutlined />}
-              href="https://www.yosintv.net/apk"
+              icon={<span dangerouslySetInnerHTML={{ __html: SVGDownload }} />}
+              href={config.links.apk}
               target="_blank"
               size="small"
             >
               APK
             </Button>
             <button className="yosin-mobile-btn" onClick={() => setDrawerOpen(true)}>
-              <MenuOutlined />
+              <span dangerouslySetInnerHTML={{ __html: SVGMenu }} />
             </button>
           </div>
         </div>
@@ -286,7 +280,7 @@ export default function Header() {
       <Drawer
         title={
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <img src="https://www.yosintv.net/logo.png" alt="YoSinTV" style={{ height: 28, width: 'auto' }} />
+            <img src={config.site.logoUrl} alt={config.site.name} style={{ height: 40, width: 'auto' }} />
           </div>
         }
         placement="right"
@@ -294,10 +288,10 @@ export default function Header() {
         open={drawerOpen}
         width={300}
         styles={{
-          header: { background: '#0d0d0d', borderBottom: '1px solid #2a2a2a' },
-          body: { background: '#0d0d0d', padding: 16 },
+          header: { background: '#fff', borderBottom: '1px solid #e0e0e0' },
+          body: { background: '#fff', padding: 16 },
         }}
-        closeIcon={<CloseOutlined style={{ color: '#fff' }} />}
+        closeIcon={<span dangerouslySetInnerHTML={{ __html: SVGClose }} style={{ color: '#333', fontSize: 18 }} />}
       >
         <Space direction="vertical" style={{ width: '100%' }} size={4}>
           {menuItems.map((item) => (
@@ -308,7 +302,7 @@ export default function Header() {
                   setDrawerOpen(false);
                 }
               }}>
-                {item.icon}
+                <span dangerouslySetInnerHTML={{ __html: item.icon }} />
                 {item.label}
               </div>
               {'children' in item && (
@@ -329,8 +323,8 @@ export default function Header() {
           <div style={{ height: 16 }} />
           <Button
             className="header-btn-apk"
-            icon={<DownloadOutlined />}
-            href="https://www.yosintv.net/apk"
+            icon={<span dangerouslySetInnerHTML={{ __html: SVGDownload }} />}
+            href={config.links.apk}
             target="_blank"
             block
           >
@@ -338,8 +332,8 @@ export default function Header() {
           </Button>
           <Button
             className="header-btn-telegram"
-            icon={<SendOutlined />}
-            href="https://t.me/yosintvlive"
+            icon={<span dangerouslySetInnerHTML={{ __html: SVGSend }} />}
+            href={config.links.social.telegram}
             target="_blank"
             block
           >
