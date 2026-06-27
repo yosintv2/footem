@@ -36,31 +36,6 @@ const { title = `${config.site.name} - ${config.site.tagline}`, description = co
   <link href={config.fonts.css} rel="stylesheet" />
   <link rel="alternate" type="application/rss+xml" title={`${config.site.name} &raquo; Feed`} href={config.links.rss} />
   <script async src={`${config.ads.google.scriptUrl}?client=${config.ads.google.client}`} crossorigin="anonymous"></script>
-  <script is:inline>
-    (function(){
-      var bait = document.createElement('div');
-      bait.innerHTML = '&nbsp;';
-      bait.className = 'ad-bait';
-      bait.style.position = 'absolute';
-      bait.style.left = '-9999px';
-      bait.style.width = '1px';
-      bait.style.height = '1px';
-      document.body.appendChild(bait);
-      window.addEventListener('load', function(){
-        setTimeout(function(){
-          var detected = false;
-          if (bait.offsetParent === null || bait.offsetHeight === 0) detected = true;
-          var adBox = document.querySelector('.adsbygoogle');
-          if (adBox && (adBox.offsetHeight === 0 || adBox.offsetParent === null)) detected = true;
-          if (detected) {
-            var el = document.getElementById('adblock-popup');
-            if (el) el.style.display = 'flex';
-          }
-          bait.remove();
-        }, 2000);
-      });
-    })();
-  </script>
 </head>
 <body>
   <div id="adblock-popup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:99999;justify-content:center;align-items:center;">
@@ -93,5 +68,36 @@ const { title = `${config.site.name} - ${config.site.tagline}`, description = co
     <slot />
   </main>
   <Footer client:only="react" />
+  <script is:inline>
+    (function(){
+      var bait = document.createElement('div');
+      bait.innerHTML = '&nbsp;';
+      bait.className = 'adsbox';
+      bait.id = 'adb-detection';
+      bait.style.position = 'absolute';
+      bait.style.left = '-9999px';
+      bait.style.width = '1px';
+      bait.style.height = '1px';
+      document.body.appendChild(bait);
+      setTimeout(function(){
+        var detected = false;
+        if (bait.offsetParent === null || bait.offsetHeight === 0) detected = true;
+        bait.remove();
+        if (!detected) {
+          var adBoxes = document.querySelectorAll('ins.adsbygoogle');
+          for (var i = 0; i < adBoxes.length; i++) {
+            if (adBoxes[i].offsetHeight === 0 || adBoxes[i].offsetParent === null) {
+              detected = true;
+              break;
+            }
+          }
+        }
+        if (detected) {
+          var el = document.getElementById('adblock-popup');
+          if (el) el.style.display = 'flex';
+        }
+      }, 2000);
+    })();
+  </script>
 </body>
 </html>
