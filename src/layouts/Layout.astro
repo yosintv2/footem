@@ -38,6 +38,23 @@ const { title = `${config.site.name} - ${config.site.tagline}`, description = co
   <script async src={`${config.ads.google.scriptUrl}?client=${config.ads.google.client}`} crossorigin="anonymous"></script>
 </head>
 <body>
+  <div id="bottom-ad" style="position:fixed;bottom:0;left:0;width:100%;z-index:99998;background:#fff;box-shadow:0 -2px 12px rgba(0,0,0,0.15);animation:slideUp 0.4s ease-out;padding:6px 16px;text-align:center;">
+    <button onclick="document.getElementById('bottom-ad').style.display='none'" style="position:absolute;top:-28px;right:8px;background:#ff0037;color:#fff;border:none;border-radius:4px 4px 0 0;padding:4px 14px;font-size:14px;cursor:pointer;font-weight:700;line-height:1;">&times; Close</button>
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;max-width:728px;min-width:320px;height:auto;min-height:50px;background:transparent;"
+         data-ad-client={config.ads.google.client}
+         data-ad-slot={config.ads.google.slots.responsive}
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script is:inline>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+  <style is:inline>
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    @media (max-width: 480px) { #bottom-ad { padding: 4px 8px; } #bottom-ad ins { min-height: 50px; } }
+  </style>
+
   <div id="adb-wrapper" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:99999;justify-content:center;align-items:center;">
     <div class="adb-card" style="background:#fff;border-radius:12px;padding:40px 32px;max-width:400px;width:90%;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
       <div style="font-size:50px;margin-bottom:15px;">🚫</div>
