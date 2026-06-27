@@ -130,12 +130,13 @@ export default function MatchList({ apiUrl, title, isCricket }: Props) {
 
         .ml-league-filters {
           display: flex;
-          flex-wrap: wrap;
+          flex-wrap: nowrap;
           gap: 8px;
-          justify-content: center;
+          justify-content: flex-start;
           padding: 8px 4px 16px;
           overflow-x: auto;
           scrollbar-width: none;
+          -webkit-overflow-scrolling: touch;
         }
         .ml-league-filters::-webkit-scrollbar { display: none; }
         .ml-filter-btn {
