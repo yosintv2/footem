@@ -55,7 +55,6 @@ export const config = {
   },
   nav: {
     menuItems: [
-      { key: '/today-matches', label: 'Today Matches' },
       {
         key: '#',
         label: 'Cricket',
