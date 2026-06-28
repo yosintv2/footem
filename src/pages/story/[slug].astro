@@ -145,10 +145,10 @@ const readingTime = article?.content
             <a href={config.base || '/'}>← Back to Home</a>
           </div>
         )}
-        <LatestNews client:only="react" />
       </div>
 
       <Sidebar client:only="react" />
     </div>
+    <LatestNews client:only="react" />
   </div>
 </Layout>
