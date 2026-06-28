@@ -235,7 +235,7 @@ export default function MatchList({ apiUrl, title, isCricket }: Props) {
           {filtered.filter(m => m.league === lg).flatMap((m, i) => {
             const status = getStatus(m.start, m.duration);
             const card = (
-              <a key={`card-${i}`} href={m.details_url || (m.event_id ? `/match/${m.event_id}` : '#')} class="match-card">
+              <a key={`card-${i}`}               href={m.details_url || '#'} class="match-card">
                 <div class="match-card-content">
                   <div class="match-row-teams">
                     <div class="match-team home">
