@@ -41,16 +41,16 @@ import { config } from '../config';
           isCricket={true}
           client:only="react"
         />
-        <div style="background:#fff;text-align:center;padding:8px 0;min-height:60px;display:flex;align-items:center;justify-content:center;">
-        <ins class="adsbygoogle"
-             style="display:block;background:transparent;"
-             data-ad-client={config.ads.google.client}
-             data-ad-slot={config.ads.google.slots.betweenMatch}
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        </div>
       </div>
       <Sidebar client:only="react" />
+    </div>
+    <div style="background:#fff;text-align:center;padding:12px 0;min-height:90px;display:flex;align-items:center;justify-content:center;max-width:1200px;margin:0 auto;">
+      <ins class="adsbygoogle"
+           style="display:block;background:transparent;"
+           data-ad-client={config.ads.google.client}
+           data-ad-slot={config.ads.google.slots.betweenMatch}
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
     </div>
     <LatestNews client:only="react" />
   </div>
