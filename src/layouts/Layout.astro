@@ -1,6 +1,5 @@
 ---
 import Header from '../components/Header';
-import Ticker from '../components/Ticker';
 import Footer from '../components/Footer';
 import { config } from '../config';
 import '../styles/global.css';
@@ -9,10 +8,9 @@ export interface Props {
   title?: string;
   description?: string;
   image?: string;
-  showTicker?: boolean;
 }
 
-const { title = `${config.site.name} - ${config.site.tagline}`, description = config.site.description, image, showTicker = false } = Astro.props;
+const { title = `${config.site.name} - ${config.site.tagline}`, description = config.site.description, image } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -64,7 +62,6 @@ const { title = `${config.site.name} - ${config.site.tagline}`, description = co
     <script async src="//waust.at/d.js"></script>
   </div>
   <Header client:only="react" />
-  {showTicker && <Ticker client:only="react" />}
   <div style="text-align:center;padding:6px 0;background:#fff;width:100%;max-width:100%;overflow:hidden;">
     <ins class="adsbygoogle"
          style="display:block;width:100%;height:auto;background:transparent;"
