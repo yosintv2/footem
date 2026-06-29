@@ -129,6 +129,7 @@ export default function LeagueGrid() {
           opacity: 0.92;
           transform: translateY(-2px);
           box-shadow: 0 4px 15px rgba(255, 0, 55, 0.3);
+          color: #fff;
         }
       `}</style>
 
