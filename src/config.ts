@@ -39,8 +39,8 @@ export const config = {
 //    url: 'https://www.yosintv.net/apk',
   
   apkButton: {
-    text: 'Track Your Upcoming Payments',
-    url: 'https://www.renewtracker.net/', 
+    text: ' Track Your Upcoming Payments ',
+    url: ' https://www.renewtracker.net/?ref=buttonads ', 
   },
   links: {
     social: {
