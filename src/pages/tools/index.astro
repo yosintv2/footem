@@ -1,0 +1,42 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { config } from '../../config';
+---
+
+<Layout title={`Tools - ${config.site.name}`}>
+  <div style="max-width: 800px; margin: 0 auto; padding: 40px 16px;">
+    <style>
+      .tools-page h1 { font-size: 32px; font-weight: 800; color: #222; margin-bottom: 8px; }
+      .tools-page p.sub { color: #888; font-size: 15px; margin-bottom: 32px; }
+      .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+      .tool-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 16px;
+        padding: 24px;
+        transition: all 0.2s;
+        text-decoration: none;
+        display: block;
+      }
+      .tool-card:hover {
+        border-color: #ff0037;
+        box-shadow: 0 4px 20px rgba(255,0,55,0.1);
+        transform: translateY(-2px);
+      }
+      .tool-card .icon { font-size: 32px; margin-bottom: 12px; }
+      .tool-card h3 { font-size: 18px; font-weight: 700; color: #222; margin-bottom: 6px; }
+      .tool-card p { font-size: 14px; color: #888; line-height: 1.5; }
+    </style>
+    <div class="tools-page">
+      <h1>Tools</h1>
+      <p class="sub">Useful online tools and calculators.</p>
+      <div class="tools-grid">
+        <a href="/tools/dob-calculator" class="tool-card">
+          <div class="icon">🎂</div>
+          <h3>DOB Calculator</h3>
+          <p>Calculate your exact age in years, months, days, hours, minutes, and seconds. Find your zodiac sign and days until next birthday.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

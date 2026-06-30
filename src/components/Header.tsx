@@ -32,6 +32,7 @@ const menuItems = [
     ],
   },
   { key: '/', label: 'Articles', icon: SVGArticle },
+  { key: '/tools', label: 'Tools', icon: SVGArticle },
 ];
 
 export default function Header() {

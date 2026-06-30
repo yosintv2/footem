@@ -119,6 +119,7 @@ export const config = {
           { href: '/dmca', label: 'DMCA' },
           { href: '/privacy-policy', label: 'Privacy Policy' },
           { href: '/about', label: 'About Us' },
+          { href: '/tools', label: 'Tools' },
         ],
       },
     },
