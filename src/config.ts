@@ -34,9 +34,16 @@ export const config = {
       },
     },
   },
+  
+//  apkButton: {
+//    text: 'Download YoSinTV APK',
+//    url: 'https://www.yosintv.net/apk',
+//  },
+
+  
   apkButton: {
-    text: 'Download YoSinTV APK',
-    url: 'https://www.yosintv.net/apk',
+    text: 'Track Your Upcoming Payments',
+    url: 'https://www.renewtracker.net/', 
   },
   links: {
     social: {
