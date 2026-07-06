@@ -3,9 +3,9 @@ export const config = {
   site: {
     name: 'YoSinTV',
     tagline: 'FIFA World Cup 2026 | Playing XI | Football News',
-    url: 'https://www.yosintv.net',
+    url: 'https://play.cricfoot.net',
     description: 'YoSinTV is sports website that covers all the Cricket Matches, World Cup, International/Domestic Matches, Football Matches, etc.',
-    logoUrl: 'https://www.yosintv.net/logo.png',
+    logoUrl: 'https://play.cricfoot.net/logo.png',
     ogLocale: 'en_US',
     twitterCard: 'summary_large_image',
     robots: 'follow, index',
@@ -40,7 +40,7 @@ export const config = {
   
   apkButton: {
     text: 'Download YoSinTV APK',
-    url: 'https://www.yosintv.net/apk',
+    url: 'https://play.cricfoot.net/apk',
   },
   links: {
     social: {
@@ -49,10 +49,10 @@ export const config = {
       facebook: 'https://facebook.com/yosintv.official',
       instagram: 'https://instagram.com/yosintv.official',
     },
-    apk: 'https://www.yosintv.net/apk',
+    apk: 'https://play.cricfoot.net/apk',
     contact: '/contact',
     dmca: '/dmca',
-    rss: 'https://www.yosintv.net/feed/',
+    rss: 'https://play.cricfoot.net/feed/',
   },
   fonts: {
     preconnect: [
@@ -113,7 +113,7 @@ export const config = {
         links: [
           { href: '/', label: 'Home' },
           { href: '/blog', label: 'Blog' },
-          { href: 'https://www.yosintv.net/apk', label: 'Download APK' },
+          { href: 'https://play.cricfoot.net/apk', label: 'Download APK' },
           { href: 'https://t.me/yosintvlive', label: 'Telegram Channel' },
           { href: '/contact', label: 'Contact Us' },
           { href: '/dmca', label: 'DMCA' },
