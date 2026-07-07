@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Sidebar from '../components/Sidebar';
 import LeagueGrid from '../components/LeagueGrid';
 import LatestNews from '../components/LatestNews';
+import WhatsAppPopup from '../components/WhatsAppPopup';
 import { config } from '../config';
 ---
 
@@ -43,5 +44,7 @@ import { config } from '../config';
 
       <LatestNews client:only="react" />
     </div>
+
+    <WhatsAppPopup client:only="react" />
   </div>
 </Layout>
