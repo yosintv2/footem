@@ -86,7 +86,7 @@ export const config = {
   // ============================================================
   whatsappPopup: {
     enabled: true,                     // set false to hide the popup completely
-    duration: 5000,                    // auto-hide after this many milliseconds
+    duration: 3000,                    // auto-hide after this many milliseconds
     heading: 'Join YoSinTV Whatsapp',  // bold title at top
     subtitle: 'Join Our Community',    // smaller text below heading
     description: 'Get latest updates, breaking news and exclusive content directly on WhatsApp.',
