@@ -40,7 +40,41 @@ export default function WhatsAppPopup() {
         boxShadow: '0 12px 48px rgba(0,0,0,0.2)',
         padding: '20px 20px 16px',
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+        position: 'relative',
       }}>
+        <button
+          onClick={() => setVisible(false)}
+          style={{
+            position: 'absolute',
+            top: 12,
+            right: 12,
+            width: 32,
+            height: 32,
+            borderRadius: '50%',
+            border: 'none',
+            background: '#f0f0f0',
+            color: '#888',
+            fontSize: 18,
+            fontWeight: 600,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            lineHeight: 1,
+            transition: 'all 0.15s',
+          }}
+          onMouseEnter={e => {
+            (e.target as HTMLElement).style.background = '#e0e0e0';
+            (e.target as HTMLElement).style.color = '#555';
+          }}
+          onMouseLeave={e => {
+            (e.target as HTMLElement).style.background = '#f0f0f0';
+            (e.target as HTMLElement).style.color = '#888';
+          }}
+        >
+          ✕
+        </button>
+
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -114,39 +148,6 @@ export default function WhatsAppPopup() {
         >
           👥 Join YoSinTV Whatsapp
         </a>
-
-        <button
-          onClick={() => setVisible(false)}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 6,
-            width: '100%',
-            padding: '10px 0',
-            background: 'transparent',
-            color: '#999',
-            border: '1px solid #eee',
-            borderRadius: 12,
-            fontSize: 13,
-            fontWeight: 500,
-            cursor: 'pointer',
-            marginTop: 10,
-            transition: 'all 0.15s',
-          }}
-          onMouseEnter={e => {
-            (e.target as HTMLElement).style.background = '#f5f5f5';
-            (e.target as HTMLElement).style.color = '#666';
-            (e.target as HTMLElement).style.borderColor = '#ddd';
-          }}
-          onMouseLeave={e => {
-            (e.target as HTMLElement).style.background = 'transparent';
-            (e.target as HTMLElement).style.color = '#999';
-            (e.target as HTMLElement).style.borderColor = '#eee';
-          }}
-        >
-          <span style={{ fontSize: 14 }}>✔</span> Already Joined
-        </button>
       </div>
     </div>
   );
