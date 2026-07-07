@@ -21,14 +21,17 @@ const iconMap: Record<string, string> = {
   Tools: SVGArticle,
 };
 
-const menuItems = config.nav.menuItems.map(item => ({
-  ...item,
-  icon: iconMap[item.label] || SVGArticle,
-  children: 'children' in item ? (item.children as Array<{ key: string; label: string }>).map(child => ({
-    ...child,
-    icon: '',
-  })) : undefined,
-}));
+const menuItems = config.nav.menuItems.map(item => {
+  const base: { key: string; label: string; icon: string; children?: Array<{ key: string; label: string }> } = {
+    key: item.key,
+    label: item.label,
+    icon: iconMap[item.label] || SVGArticle,
+  };
+  if ('children' in item && item.children) {
+    base.children = (item.children as Array<{ key: string; label: string }>).map(child => ({ ...child }));
+  }
+  return base;
+});
 
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
