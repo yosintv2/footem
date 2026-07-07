@@ -25,7 +25,7 @@ export default function Sidebar() {
 
   const resolvePath = (path: string) => config.base ? config.base + path : path;
   const apkUrl = config.links.apk;
-  const telegramUrl = config.links.social.telegram;
+  const whatsappUrl = config.links.social.whatsapp;
   const articleList = articles.slice(0, 6);
 
   return (
@@ -123,13 +123,13 @@ export default function Sidebar() {
           transform: translateY(-1px);
           box-shadow: 0 4px 16px rgba(255,0,55,0.25);
         }
-        .sidebar-cta-btn.telegram {
-          background: #0088cc;
+        .sidebar-cta-btn.whatsapp {
+          background: #25D366;
           color: #fff;
         }
-        .sidebar-cta-btn.telegram:hover {
+        .sidebar-cta-btn.whatsapp:hover {
           transform: translateY(-1px);
-          box-shadow: 0 4px 16px rgba(0,136,204,0.25);
+          box-shadow: 0 4px 16px rgba(37,211,102,0.25);
         }
       `}</style>
 
@@ -138,8 +138,8 @@ export default function Sidebar() {
           <a className="sidebar-cta-btn apk" href={apkUrl}>
             Download APK
           </a>
-          <a className="sidebar-cta-btn telegram" href={telegramUrl}>
-            Join Telegram
+          <a className="sidebar-cta-btn whatsapp" href={whatsappUrl}>
+            Join WhatsApp
           </a>
         </div>
       </div>

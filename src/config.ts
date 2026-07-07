@@ -34,7 +34,7 @@ export const config = {
   },
   links: {
     social: {
-      telegram: 'https://t.me/yosintvlive',
+      whatsapp: 'https://www.whatsapp.com/channel/0029Vb7ikzn9hXF5ec0uUI0H',
       twitter: 'https://twitter.com/yosintv',
       facebook: 'https://facebook.com/yosintv.official',
       instagram: 'https://instagram.com/yosintv.official',

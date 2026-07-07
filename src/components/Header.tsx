@@ -180,8 +180,8 @@ export default function Header() {
           opacity: 0.9;
           transform: translateY(-1px);
         }
-        .header-btn-telegram {
-          background: #0088cc !important;
+        .header-btn-whatsapp {
+          background: #25D366 !important;
           border: none !important;
           color: #fff !important;
           border-radius: 8px !important;
@@ -191,7 +191,7 @@ export default function Header() {
           gap: 6px !important;
           padding: 0 16px !important;
         }
-        .header-btn-telegram:hover {
+        .header-btn-whatsapp:hover {
           opacity: 0.9;
           transform: translateY(-1px);
         }
@@ -256,13 +256,13 @@ export default function Header() {
 
           <div className="yosin-actions">
             <Button
-              className="header-btn-telegram"
+              className="header-btn-whatsapp"
               icon={<span dangerouslySetInnerHTML={{ __html: SVGSend }} />}
-              href={config.links.social.telegram}
+              href={config.links.social.whatsapp}
 
               size="small"
             >
-              <span style={{ display: 'none' }}>Telegram</span>
+              <span style={{ display: 'none' }}>WhatsApp</span>
             </Button>
             <Button
               className="header-btn-apk"
@@ -333,12 +333,12 @@ export default function Header() {
             Download APK
           </Button>
           <Button
-            className="header-btn-telegram"
+            className="header-btn-whatsapp"
             icon={<span dangerouslySetInnerHTML={{ __html: SVGSend }} />}
-            href={config.links.social.telegram}
+            href={config.links.social.whatsapp}
             block
           >
-            Join Telegram
+            Join WhatsApp
           </Button>
         </Space>
       </Drawer>

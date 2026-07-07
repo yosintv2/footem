@@ -141,7 +141,7 @@ export default function Footer() {
               </div>
             )}
             <div className="yosin-footer-social">
-              <a href={config.links.social.telegram} aria-label="Telegram"><span dangerouslySetInnerHTML={{ __html: SVGSend }} /></a>
+              <a href={config.links.social.whatsapp} aria-label="WhatsApp"><span dangerouslySetInnerHTML={{ __html: SVGSend }} /></a>
               <a href={config.links.social.twitter} aria-label="Twitter"><span dangerouslySetInnerHTML={{ __html: SVGTwitter }} /></a>
               <a href={config.links.social.facebook} aria-label="Facebook"><span dangerouslySetInnerHTML={{ __html: SVGFacebook }} /></a>
               <a href={config.links.social.instagram} aria-label="Instagram"><span dangerouslySetInnerHTML={{ __html: SVGInstagram }} /></a>
