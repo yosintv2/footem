@@ -3,7 +3,7 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://yosintv.in',
+  site: 'https://www.yosintv.in',
   output: 'static',
   build: {
     format: 'directory',
