@@ -14,7 +14,7 @@ const SVGClose = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024
 const menuItems = [
   { key: '/', label: 'Home', icon: SVGHome },
   {
-    key: 'cricket',
+    key: '/',
     label: 'Cricket',
     icon: SVGCricket,
     children: [
@@ -23,7 +23,7 @@ const menuItems = [
     ],
   },
   {
-    key: 'football',
+    key: '/',
     label: 'Football',
     icon: SVGSoccer,
     children: [
