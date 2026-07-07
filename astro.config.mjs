@@ -10,7 +10,14 @@ export default defineConfig({
   },
   integrations: [
     react(),
-    sitemap(),
+    sitemap({
+      changefreq: 'hourly',
+      lastmod: new Date(),
+      serialize(item) {
+        item.changefreq = 'hourly';
+        return item;
+      },
+    }),
   ],
   vite: {},
 });
