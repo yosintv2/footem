@@ -262,7 +262,7 @@ export default function Header() {
               href={config.links.social.whatsapp}
               size="small"
             >
-              WhatsApp
+              <span style={{ display: 'none' }}>WhatsApp</span>
             </Button>
             <Button
               className="header-btn-apk"
