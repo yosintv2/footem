@@ -147,7 +147,7 @@ export const config = {
     pageTitle: 'Contact Us - ',
     heading: 'Contact Us',
     description: 'Have questions, feedback, or suggestions? We\'d love to hear from you. Reach out to us through any of the channels below.',
-    email: 'contact@yosintv.in',
+    email: 'mail.yosintv@gmail.com',
     labels: {
       email: 'Email:',
       whatsapp: 'WhatsApp:',
