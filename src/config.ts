@@ -58,16 +58,16 @@ export const config = {
         key: '#',
         label: 'Cricket',
         children: [
-          { key: '#', label: 'All Cricket' },
-          { key: '#', label: 'T20 World Cup 2026' },
+          { key: '/', label: 'All Cricket' },
+          { key: '/', label: 'T20 World Cup 2026' },
         ],
       },
       {
         key: '#',
         label: 'Football',
         children: [
-          { key: '#', label: 'All Football' },
-          { key: '#', label: 'FIFA World Cup 2026' },
+          { key: '/', label: 'All Football' },
+          { key: '/', label: 'FIFA World Cup 2026' },
         ],
       },
       { key: '#', label: 'Articles' },
