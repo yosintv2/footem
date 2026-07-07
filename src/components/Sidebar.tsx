@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { config } from '../config';
+import { getWhatsAppUrl } from '../lib/whatsapp';
 
 interface Article {
   slug: string;
@@ -15,17 +16,18 @@ const SVGSend = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"
 
 export default function Sidebar() {
   const [articles, setArticles] = useState<Article[]>([]);
+  const [whatsappUrl, setWhatsappUrl] = useState(config.links.social.whatsapp);
 
   useEffect(() => {
     fetch(config.api.articles)
       .then(r => r.json())
       .then(setArticles)
       .catch(() => {});
+    getWhatsAppUrl().then(setWhatsappUrl);
   }, []);
 
   const resolvePath = (path: string) => config.base ? config.base + path : path;
   const apkUrl = config.links.apk;
-  const whatsappUrl = config.links.social.whatsapp;
   const articleList = articles.slice(0, 6);
 
   return (

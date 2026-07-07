@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button, Drawer, Space } from 'antd';
 import { config } from '../config';
+import { getWhatsAppUrl } from '../lib/whatsapp';
 
 const SVGHome = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor"><path d="M946.5 505L560.1 118.8l-25.9-25.9a31.5 31.5 0 00-44.4 0L77.5 505a63.9 63.9 0 00-18.8 46c-.4 35.2 28.6 64 64 64h48.6V908c0 17.7 14.3 32 32 32H388V732h119.9v208h184.7c17.7 0 32-14.3 32-32V614.9H864c35.4 0 64.4-28.8 64-64-.2-17.3-7.1-33.7-18.5-45.9z"/></svg>';
 const SVGCricket = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor"><path d="M874.1 164.6a48 48 0 00-67.9-1.5L531.8 406.1c-3.4 2.7-5.5 6.5-6.3 10.5-2.6 10.8 4.5 21.4 15.4 21.4 2.5 0 5-.5 7.4-1.6L872.6 232.5a48 48 0 001.5-67.9zM512 448c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm-80 80c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm-80 80c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm304-32c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm-80 80c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32z"/></svg>';
@@ -39,6 +40,11 @@ const menuItems = [
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [whatsappUrl, setWhatsappUrl] = useState(config.links.social.whatsapp);
+
+  useEffect(() => {
+    getWhatsAppUrl().then(setWhatsappUrl);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -259,7 +265,7 @@ export default function Header() {
             <Button
               className="header-btn-whatsapp"
               icon={<span dangerouslySetInnerHTML={{ __html: SVGWhatsApp }} />}
-              href={config.links.social.whatsapp}
+              href={whatsappUrl}
               size="small"
             >
               <span style={{ display: 'none' }}>WhatsApp</span>
@@ -335,7 +341,7 @@ export default function Header() {
           <Button
             className="header-btn-whatsapp"
             icon={<span dangerouslySetInnerHTML={{ __html: SVGWhatsApp }} />}
-            href={config.links.social.whatsapp}
+            href={whatsappUrl}
             block
           >
             Join WhatsApp

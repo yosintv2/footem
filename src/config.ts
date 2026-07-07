@@ -44,6 +44,11 @@ export const config = {
     dmca: '/dmca',
     rss: `${SITE_URL}/feed/`,
   },
+  remoteConfig: {
+    enabled: true,
+    url: 'https://cdn.singhs.com.np/api/articles.json',
+    whatsappPath: 'whatsappUrl',
+  },
   fonts: {
     preconnect: [
       'https://fonts.googleapis.com',

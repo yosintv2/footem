@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import { config } from '../config';
+import { getWhatsAppUrl } from '../lib/whatsapp';
 
 export default function WhatsAppPopup() {
   const [visible, setVisible] = useState(true);
+  const [whatsappUrl, setWhatsappUrl] = useState(config.links.social.whatsapp);
 
   useEffect(() => {
+    getWhatsAppUrl().then(setWhatsappUrl);
     const timer = setTimeout(() => setVisible(false), 5000);
     return () => clearTimeout(timer);
   }, []);
@@ -116,7 +119,7 @@ export default function WhatsAppPopup() {
         </p>
 
         <a
-          href={config.links.social.whatsapp}
+          href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
           style={{

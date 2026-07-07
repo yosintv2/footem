@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'react';
 import { Typography } from 'antd';
 import { config } from '../config';
+import { getWhatsAppUrl } from '../lib/whatsapp';
 
 const { Text } = Typography;
 
@@ -15,6 +17,12 @@ const resolvePath = (path: string) => {
 };
 
 export default function Footer() {
+  const [whatsappUrl, setWhatsappUrl] = useState(config.links.social.whatsapp);
+
+  useEffect(() => {
+    getWhatsAppUrl().then(setWhatsappUrl);
+  }, []);
+
   return (
     <>
       <style>{`
@@ -141,7 +149,7 @@ export default function Footer() {
               </div>
             )}
             <div className="yosin-footer-social">
-              <a href={config.links.social.whatsapp} aria-label="WhatsApp"><span dangerouslySetInnerHTML={{ __html: SVGSend }} /></a>
+              <a href={whatsappUrl} aria-label="WhatsApp"><span dangerouslySetInnerHTML={{ __html: SVGSend }} /></a>
               <a href={config.links.social.twitter} aria-label="Twitter"><span dangerouslySetInnerHTML={{ __html: SVGTwitter }} /></a>
               <a href={config.links.social.facebook} aria-label="Facebook"><span dangerouslySetInnerHTML={{ __html: SVGFacebook }} /></a>
               <a href={config.links.social.instagram} aria-label="Instagram"><span dangerouslySetInnerHTML={{ __html: SVGInstagram }} /></a>
