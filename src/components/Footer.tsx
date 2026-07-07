@@ -149,11 +149,11 @@ export default function Footer() {
               </div>
             )}
             <div className="yosin-footer-social">
-              <a href={whatsappUrl} aria-label="WhatsApp"><span dangerouslySetInnerHTML={{ __html: SVGSend }} /></a>
-              <a href={config.links.social.twitter} aria-label="Twitter"><span dangerouslySetInnerHTML={{ __html: SVGTwitter }} /></a>
-              <a href={config.links.social.facebook} aria-label="Facebook"><span dangerouslySetInnerHTML={{ __html: SVGFacebook }} /></a>
-              <a href={config.links.social.instagram} aria-label="Instagram"><span dangerouslySetInnerHTML={{ __html: SVGInstagram }} /></a>
-              <a href={config.links.apk} aria-label="Download APK"><span dangerouslySetInnerHTML={{ __html: SVGDownload }} /></a>
+              <a href={whatsappUrl} aria-label={config.footer.socialAria.whatsapp}><span dangerouslySetInnerHTML={{ __html: SVGSend }} /></a>
+              <a href={config.links.social.twitter} aria-label={config.footer.socialAria.twitter}><span dangerouslySetInnerHTML={{ __html: SVGTwitter }} /></a>
+              <a href={config.links.social.facebook} aria-label={config.footer.socialAria.facebook}><span dangerouslySetInnerHTML={{ __html: SVGFacebook }} /></a>
+              <a href={config.links.social.instagram} aria-label={config.footer.socialAria.instagram}><span dangerouslySetInnerHTML={{ __html: SVGInstagram }} /></a>
+              <a href={config.links.apk} aria-label={config.footer.socialAria.apk}><span dangerouslySetInnerHTML={{ __html: SVGDownload }} /></a>
             </div>
           </div>
 

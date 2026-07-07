@@ -28,7 +28,7 @@ export default function Sidebar() {
 
   const resolvePath = (path: string) => config.base ? config.base + path : path;
   const apkUrl = config.links.apk;
-  const articleList = articles.slice(0, 6);
+  const articleList = articles.slice(0, config.sidebar.articleLimit);
 
   return (
     <aside className="sidebar">
@@ -138,16 +138,16 @@ export default function Sidebar() {
       <div className="sidebar-widget">
         <div className="sidebar-cta">
           <a className="sidebar-cta-btn apk" href={apkUrl}>
-            Download APK
+            {config.sidebar.buttons.apk}
           </a>
           <a className="sidebar-cta-btn whatsapp" href={whatsappUrl}>
-            Join WhatsApp
+            {config.sidebar.buttons.whatsapp}
           </a>
         </div>
       </div>
 
       <div className="sidebar-widget">
-        <div className="sidebar-widget-title">Recent Posts</div>
+        <div className="sidebar-widget-title">{config.sidebar.widgetTitle}</div>
         <div className="sidebar-widget-body">
           {articleList.map((a) => (
             <a key={a.slug} href={resolvePath(`/story/${a.slug}`)} className="sidebar-post-item">

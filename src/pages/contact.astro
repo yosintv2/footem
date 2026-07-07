@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { config } from '../config';
 ---
 
-<Layout title={`Contact Us - ${config.site.name}`}>
+<Layout title={`${config.contact.pageTitle}${config.site.name}`}>
   <div class="page-wrap">
     <style>
       .page-wrap { max-width: 800px; margin: 0 auto; padding: 40px 16px; }
@@ -14,14 +14,14 @@ import { config } from '../config';
       .contact-list li strong { color: #222; display: inline-block; width: 120px; }
       .contact-list a { color: #ff0037; }
     </style>
-    <h1>Contact Us</h1>
-    <p>Have questions, feedback, or suggestions? We'd love to hear from you. Reach out to us through any of the channels below.</p>
+    <h1>{config.contact.heading}</h1>
+    <p>{config.contact.description}</p>
     <ul class="contact-list">
-      <li><strong>Email:</strong> <a href="mailto:contact@yosintv.in">contact@yosintv.in</a></li>
-      <li><strong>WhatsApp:</strong> <a href={config.links.social.whatsapp}>YoSinTV Channel</a></li>
-      <li><strong>Twitter:</strong> <a href={config.links.social.twitter}>@yosintv</a></li>
-      <li><strong>Facebook:</strong> <a href={config.links.social.facebook}>YoSinTV Official</a></li>
-      <li><strong>Instagram:</strong> <a href={config.links.social.instagram}>@yosintv.official</a></li>
+      <li><strong>{config.contact.labels.email}</strong> <a href={`mailto:${config.contact.email}`}>{config.contact.email}</a></li>
+      <li><strong>{config.contact.labels.whatsapp}</strong> <a href={config.links.social.whatsapp}>{config.socialDisplay.whatsapp.handle}</a></li>
+      <li><strong>{config.contact.labels.twitter}</strong> <a href={config.links.social.twitter}>{config.socialDisplay.twitter.handle}</a></li>
+      <li><strong>{config.contact.labels.facebook}</strong> <a href={config.links.social.facebook}>{config.socialDisplay.facebook.handle}</a></li>
+      <li><strong>{config.contact.labels.instagram}</strong> <a href={config.links.social.instagram}>{config.socialDisplay.instagram.handle}</a></li>
     </ul>
   </div>
 </Layout>

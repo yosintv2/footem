@@ -8,9 +8,11 @@ export default function WhatsAppPopup() {
 
   useEffect(() => {
     getWhatsAppUrl().then(setWhatsappUrl);
-    const timer = setTimeout(() => setVisible(false), 5000);
+    const timer = setTimeout(() => setVisible(false), config.whatsappPopup.duration);
     return () => clearTimeout(timer);
   }, []);
+
+  if (!config.whatsappPopup.enabled) return null;
 
   if (!visible) return null;
 
@@ -100,10 +102,10 @@ export default function WhatsAppPopup() {
           </div>
           <div style={{ flex: 1 }}>
             <strong style={{ fontSize: 15, color: '#1a1a1a', display: 'block' }}>
-              Join YoSinTV Whatsapp
+              {config.whatsappPopup.heading}
             </strong>
             <span style={{ fontSize: 12, color: '#888', marginTop: 1, display: 'block' }}>
-              Join Our Community
+              {config.whatsappPopup.subtitle}
             </span>
           </div>
         </div>
@@ -115,7 +117,7 @@ export default function WhatsAppPopup() {
           lineHeight: 1.5,
           paddingLeft: 56,
         }}>
-          Get latest updates, breaking news and exclusive content directly on WhatsApp.
+          {config.whatsappPopup.description}
         </p>
 
         <a
@@ -149,7 +151,7 @@ export default function WhatsAppPopup() {
             (e.target as HTMLElement).style.boxShadow = '';
           }}
         >
-          👥 Join YoSinTV Whatsapp
+          {config.whatsappPopup.ctaText}
         </a>
       </div>
     </div>
