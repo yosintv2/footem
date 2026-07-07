@@ -17,8 +17,8 @@ export const config = {
   api: {
     football: 'https://cdn.singhs.com.np/api/match-football.json',
     cricket: 'https://cdn.singhs.com.np/api/match-cricket.json',
-    footballHomepage: 'https://cdn.singhs.com.np/api/football-homepage.json',
-    cricketHomepage: 'https://cdn.singhs.com.np/api/cricket-homepage.json',
+    footballHomepage: 'https://cdn.singhs.com.np/api/noads-football.json',
+    cricketHomepage: 'https://cdn.singhs.com.np/api/noads-cricket.json',
     articles: 'https://cdn.singhs.com.np/api/articles.json',
   },
   features: {
