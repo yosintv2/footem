@@ -1,4 +1,4 @@
-const SITE_URL = 'https://yosintv.in';
+const SITE_URL = 'https://www.yosintv.in';
 
 export const config = {
   base: '',
