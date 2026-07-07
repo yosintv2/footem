@@ -1,11 +1,13 @@
+const SITE_URL = 'https://yosintv.in';
+
 export const config = {
   base: '',
   site: {
     name: 'YoSinTV',
     tagline: 'FIFA World Cup 2026 | Playing XI | Football News',
-    url: 'https://play.cricfoot.net',
+    url: SITE_URL,
     description: 'YoSinTV is sports website that covers all the Cricket Matches, World Cup, International/Domestic Matches, Football Matches, etc.',
-    logoUrl: 'https://play.cricfoot.net/logo.png',
+    logoUrl: `${SITE_URL}/logo.png`,
     ogLocale: 'en_US',
     twitterCard: 'summary_large_image',
     robots: 'follow, index',
@@ -22,25 +24,13 @@ export const config = {
   features: {
     showLeagueContainer: true,
   },
-  ads: {
-    google: {
-      scriptUrl: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
-      client: 'ca-pub-5525538810839147',
-      slots: {
-        responsive: '4345862479',
-        betweenMatch: '8381900703',
-        sidebar300x250: '4345862479',
-        betweenCards300x50: '4345862479',
-      },
-    },
-  },
   
 //    text: ' Track Your Upcoming Payments ',
 //    url: ' https://www.renewtracker.net/?ref=buttonads ', 
   
   apkButton: {
     text: 'Download YoSinTV APK',
-    url: 'https://play.cricfoot.net/apk',
+    url: `${SITE_URL}/apk`,
   },
   links: {
     social: {
@@ -49,10 +39,10 @@ export const config = {
       facebook: 'https://facebook.com/yosintv.official',
       instagram: 'https://instagram.com/yosintv.official',
     },
-    apk: 'https://play.cricfoot.net/apk',
+    apk: `${SITE_URL}/apk`,
     contact: '/contact',
     dmca: '/dmca',
-    rss: 'https://play.cricfoot.net/feed/',
+    rss: `${SITE_URL}/feed/`,
   },
   fonts: {
     preconnect: [
@@ -113,7 +103,7 @@ export const config = {
         links: [
           { href: '/', label: 'Home' },
           { href: '/blog', label: 'Blog' },
-          { href: 'https://play.cricfoot.net/apk', label: 'Download APK' },
+          { href: `${SITE_URL}/apk`, label: 'Download APK' },
           { href: 'https://t.me/yosintvlive', label: 'Telegram Channel' },
           { href: '/contact', label: 'Contact Us' },
           { href: '/dmca', label: 'DMCA' },

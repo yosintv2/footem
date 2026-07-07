@@ -3,7 +3,7 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://play.cricfoot.net',
+  site: 'https://yosintv.in',
   output: 'static',
   build: {
     format: 'directory',

@@ -23,12 +23,6 @@ export default function Sidebar() {
       .catch(() => {});
   }, []);
 
-  useEffect(() => {
-    try {
-      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
-    } catch {}
-  }, []);
-
   const resolvePath = (path: string) => config.base ? config.base + path : path;
   const apkUrl = config.links.apk;
   const telegramUrl = config.links.social.telegram;

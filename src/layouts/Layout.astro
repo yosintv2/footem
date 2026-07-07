@@ -35,26 +35,10 @@ const { title = `${config.site.name} - ${config.site.tagline}`, description = co
   <link rel="preconnect" href={config.fonts.preconnect[1]} crossorigin />
   <link href={config.fonts.css} rel="stylesheet" />
   <link rel="alternate" type="application/rss+xml" title={`${config.site.name} &raquo; Feed`} href={config.links.rss} />
-  <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
-  <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
-  <script async src={`${config.ads.google.scriptUrl}?client=${config.ads.google.client}`} crossorigin="anonymous"></script>
+
 </head>
 <body>
-  <div id="bottom-ad" style="position:fixed;bottom:0;left:0;width:100%;z-index:99998;background:#fff;box-shadow:0 -2px 12px rgba(0,0,0,0.15);padding:6px 16px;text-align:center;display:flex;align-items:center;justify-content:center;">
-    <button onclick="document.getElementById('bottom-ad').style.display='none'" style="position:absolute;top:-28px;right:8px;background:#ff0037;color:#fff;border:none;border-radius:4px 4px 0 0;padding:4px 14px;font-size:14px;cursor:pointer;font-weight:700;line-height:1;">&times; Close</button>
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:300px;height:120px;background:transparent;"
-         data-ad-client={config.ads.google.client}
-         data-ad-slot={config.ads.google.slots.betweenCards300x50}></ins>
-  </div>
-  <div id="adb-wrapper" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:99999;justify-content:center;align-items:center;">
-    <div class="adb-card" style="background:#fff;border-radius:12px;padding:40px 32px;max-width:400px;width:90%;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
-      <div style="font-size:50px;margin-bottom:15px;">🚫</div>
-      <h2 style="color:#1e293b;margin-bottom:10px;font-size:22px;font-weight:800;">Ad-blocker Detected</h2>
-      <p style="color:#64748b;margin-bottom:20px;font-size:15px;line-height:1.6;">Please disable your Ad-blocker to support our service.</p>
-      <button onclick="window.location.reload()" style="background:#ff0037;color:#fff;border:none;padding:12px 32px;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;">I've disabled it, refresh</button>
-    </div>
-  </div>
+
   <div style="position:fixed;top:0;left:0;width:100%;height:1px;overflow:hidden;visibility:hidden;z-index:9999;">
     <script type="text/javascript" src="//widget.supercounters.com/ssl/online_i.js"></script>
     <script type="text/javascript">sc_online_i(1714446,"ffffff","ffffff");</script>
@@ -62,31 +46,9 @@ const { title = `${config.site.name} - ${config.site.tagline}`, description = co
     <script async src="//waust.at/d.js"></script>
   </div>
   <Header client:only="react" />
-  <div style="text-align:center;padding:6px 0;background:#fff;width:100%;max-width:100%;overflow:hidden;">
-    <ins class="adsbygoogle"
-         style="display:block;width:100%;height:auto;background:transparent;"
-         data-ad-client={config.ads.google.client}
-         data-ad-slot={config.ads.google.slots.responsive}
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-  </div>
   <main>
     <slot />
   </main>
   <Footer client:only="react" />
-  <script is:inline>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    async function checkAdBlocker() {
-      let isBlocked = false;
-      try {
-        await fetch(new Request('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', { method: 'HEAD', mode: 'no-cors' }));
-      } catch { isBlocked = true; }
-      if (isBlocked) {
-        var el = document.getElementById('adb-wrapper');
-        if (el) { el.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
-      }
-    }
-    window.addEventListener('load', function(){ setTimeout(checkAdBlocker, 2000); });
-  </script>
 </body>
 </html>
