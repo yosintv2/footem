@@ -5,7 +5,8 @@
 // Each section has comments to help other admins understand what to change.
 // ============================================================
 
-const SITE_URL = 'https://www.yosintv.in';
+const SITE_URL = 'https://www.yosintv.me';
+
 
 export const config = {
   // Site base path (leave empty for root, e.g. '/blog' if hosted in subfolder)
