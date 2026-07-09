@@ -219,7 +219,7 @@ export const config = {
     notice: 'Stream loading below — thanks for watching!',
     monetagScript: 'https://suii.pages.dev/monetag.js',
     dmcaHeading: 'DMCA Notice',
-    dmcaText: 'Footem does not host any media content on its own servers. All streams are embedded from third-party sources. We do not control or endorse the content displayed.',
+    dmcaText: 'We does not host any media content on our servers. All streams are embedded from third-party sources. We do not control or endorse the content displayed.',
     retryText: 'Retry',
     shareText: 'Share',
     whatsappText: 'WhatsApp',
