@@ -44,6 +44,8 @@ export const config = {
   // ============================================================
   features: {
     showLeagueContainer: true,        // show/hide league grid on homepage
+    showWhatsAppPopup: true,          // show/hide WhatsApp popup on homepage
+    showVisitorCounter: true,         // show/hide Whos visitor stats counter
   },
 
   // ============================================================

@@ -12,7 +12,7 @@ export default function WhatsAppPopup() {
     return () => clearTimeout(timer);
   }, []);
 
-  if (!config.whatsappPopup.enabled) return null;
+  if (!config.features.showWhatsAppPopup) return null;
 
   if (!visible) return null;
 
