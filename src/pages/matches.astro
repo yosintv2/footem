@@ -3,15 +3,24 @@ import Layout from '../layouts/Layout.astro';
 import MatchList from '../components/MatchList';
 import Sidebar from '../components/Sidebar';
 import LatestNews from '../components/LatestNews';
-import WhatsAppPopup from '../components/WhatsAppPopup';
 import Player from '../components/Player.astro';
 import { config } from '../config';
 ---
 
-<Layout title={`${config.site.name} - ${config.site.tagline}`}>
+<Layout title={`Matches - ${config.site.name} | ${config.site.tagline}`}>
   <div class="site-content">
     <style>
       .page-layout { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+      .page-title { font-size: 28px; font-weight: 800; color: #e0e0e0; padding: 32px 0 0; }
+      .sport-tabs {
+        display: flex; gap: 12px; padding: 16px 0;
+      }
+      .sport-tab {
+        padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 14px;
+        border: 2px solid #2a2a2a; background: #1a1a1a; color: #888;
+        cursor: pointer; transition: all 0.2s;
+      }
+      .sport-tab.active { background: #ff0037; border-color: #ff0037; color: #fff; }
       .content-sidebar-layout {
         display: grid;
         grid-template-columns: 1fr;
@@ -25,6 +34,11 @@ import { config } from '../config';
       }
     </style>
     <div class="page-layout">
+      <h1 class="page-title">Matches</h1>
+      <div class="sport-tabs">
+        <a href="/matches" class="sport-tab active">Football</a>
+        <a href="/cricket" class="sport-tab">Cricket</a>
+      </div>
       <div class="content-sidebar-layout">
         <div>
           <MatchList apiUrl={config.api.football} title="" client:only="react" />
@@ -33,7 +47,6 @@ import { config } from '../config';
       </div>
       <LatestNews client:only="react" />
     </div>
-    <WhatsAppPopup client:only="react" />
   </div>
   <Player />
 </Layout>

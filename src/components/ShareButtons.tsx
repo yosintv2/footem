@@ -60,39 +60,44 @@ export default function ShareButtons({ title, url }: Props) {
   }
 
   return (
-    <div class="share-wrap">
+    <div className="share-wrap">
       <style>{`
-        .share-wrap { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-        .share-label { font-size: 13px; font-weight: 700; color: #444; margin-right: 4px; white-space: nowrap; }
+        .share-wrap { display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap; }
+        .share-label { font-size: 12px; font-weight: 700; color: #888; margin-right: 2px; white-space: nowrap; }
         .share-btn {
           display: inline-flex; align-items: center; justify-content: center;
-          width: 34px; height: 34px; border-radius: 50%; border: none;
+          width: 32px; height: 32px; border-radius: 50%; border: none;
           cursor: pointer; transition: transform 0.15s, opacity 0.15s;
           color: #fff; text-decoration: none;
         }
         .share-btn:hover { transform: scale(1.1); opacity: 0.9; }
         .share-btn-copy {
-          background: #666; font-size: 11px; font-weight: 700;
+          background: #666; font-size: 10px; font-weight: 700;
         }
         .share-btn-copy.copied { background: #22c55e; }
         @media (min-width: 640px) {
           .share-btn { width: 36px; height: 36px; }
         }
+        @media (max-width: 480px) {
+          .share-label { display: none; }
+          .share-btn { width: 28px; height: 28px; }
+          .share-wrap { gap: 4px; }
+        }
       `}</style>
-      <span class="share-label">Share:</span>
+      <span className="share-label">Share:</span>
       {shareLinks.map(s => (
         <a
           key={s.name}
           href={s.href}
 
-          class="share-btn"
+          className="share-btn"
           style={{ background: s.color }}
           title={`Share on ${s.name}`}
           dangerouslySetInnerHTML={{ __html: s.svg }}
         />
       ))}
       <button
-        class={`share-btn share-btn-copy ${copied ? 'copied' : ''}`}
+        className={`share-btn share-btn-copy ${copied ? 'copied' : ''}`}
         onClick={handleCopy}
         title={copied ? 'Copied!' : 'Copy link'}
       >

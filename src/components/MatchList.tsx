@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import ShareButtons from './ShareButtons';
 import { config } from '../config';
 
 interface Match {
@@ -124,18 +123,13 @@ export default function MatchList({ apiUrl, title, isCricket }: Props) {
   }
 
   return (
-    <div class="ml-wrap">
+    <div className="ml-wrap">
       <style>{`
         .ml-wrap {
-          max-width: 1000px;
-          margin: 0 auto;
-          padding: 0 0.75rem 3rem;
+          padding: 0 0 3rem;
           min-width: 0;
           overflow-x: hidden;
         }
-        .ml-header { margin-bottom: 16px; }
-        .ml-header h1 { font-size: 20px; font-weight: 800; color: #222; margin-bottom: 4px; }
-        .ml-header .share-wrap { padding: 0; }
         .ml-loading, .ml-empty { text-align: center; padding: 40px 0; color: #888; font-size: 15px; }
 
         .ml-league-filters {
@@ -152,10 +146,10 @@ export default function MatchList({ apiUrl, title, isCricket }: Props) {
         .ml-filter-btn {
           flex-shrink: 0;
           padding: 5px 14px;
-          border: 2px solid #ddd;
+          border: 2px solid #2a2a2a;
           border-radius: 20px;
-          background: #fff;
-          color: #666;
+          background: #1a1a1a;
+          color: #888;
           font-size: 12px;
           font-weight: 600;
           cursor: pointer;
@@ -164,8 +158,8 @@ export default function MatchList({ apiUrl, title, isCricket }: Props) {
 
         .match-card {
           display: block;
-          background: #fff;
-          border: 1px solid #e0e0e0;
+          background: #1a1a1a;
+          border: 1px solid #2a2a2a;
           border-radius: 8px;
           padding: 10px 12px;
           margin: 8px auto;
@@ -179,16 +173,16 @@ export default function MatchList({ apiUrl, title, isCricket }: Props) {
         .match-team.home { justify-content: flex-start; }
         .match-team.away { justify-content: flex-end; }
         .match-team img { width: 28px; height: 28px; object-fit: contain; flex-shrink: 0; }
-        .match-team-name { font-size: 13px; font-weight: 600; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .match-team-name { font-size: 13px; font-weight: 600; color: #e0e0e0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .match-center { display: flex; flex-direction: column; align-items: center; gap: 2px; flex-shrink: 0; min-width: 70px; }
         .match-time { font-size: 11px; font-weight: 600; color: #888; }
         .ml-status { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 9999px; display: inline-block; min-width: 48px; text-align: center; line-height: 1.3; }
-        .ml-status-countdown { background: #f0f0f0; color: #ff0037; }
+        .ml-status-countdown { background: #2a2a2a; color: #ff0037; }
         .ml-status-live { background: #ff0037; color: #fff; animation: pulse 1.2s infinite; }
-        .ml-status-over { background: #eee; color: #999; }
+        .ml-status-over { background: #2a2a2a; color: #888; }
         @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: 0.7 } }
-        .match-league-bar { margin-top: 4px; padding-top: 4px; border-top: 1px solid #f0f0f0; }
-        .match-league-bar p { font-size: 10px; color: #999; font-weight: 500; text-align: center; }
+        .match-league-bar { margin-top: 4px; padding-top: 4px; border-top: 1px solid #2a2a2a; }
+        .match-league-bar p { font-size: 10px; color: #888; font-weight: 500; text-align: center; }
 
         @media (min-width: 640px) {
           .ml-wrap { padding: 0 1rem 3rem; }
@@ -203,77 +197,42 @@ export default function MatchList({ apiUrl, title, isCricket }: Props) {
           .ml-status { font-size: 11px; padding: 3px 10px; min-width: 54px; }
           .match-league-bar p { font-size: 11px; }
         }
-        .league-apk-btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
-          padding: 14px 20px;
-          margin-bottom: 12px;
-          background: linear-gradient(135deg, #ff0037, #ff6b35);
-          color: #fff;
-          font-weight: 700;
-          font-size: 15px;
-          border: none;
-          border-radius: 10px;
-          text-decoration: none;
-          transition: all 0.2s;
-          cursor: pointer;
-        }
-        .league-apk-btn:hover {
-          opacity: 0.92;
-          transform: translateY(-2px);
-          box-shadow: 0 4px 15px rgba(255, 0, 55, 0.3);
-          color: #fff;
-        }
       `}</style>
 
-      <div class="ml-header">
-        <h1>{title}</h1>
-        <ShareButtons title={title} />
-      </div>
-
       {leagues.length > 1 && (
-        <div class="ml-league-filters">
-          <button class={`ml-filter-btn${activeLeague === 'All' ? ' active' : ''}`} onClick={() => setActiveLeague('All')}>All</button>
+        <div className="ml-league-filters">
+          <button className={`ml-filter-btn${activeLeague === 'All' ? ' active' : ''}`} onClick={() => setActiveLeague('All')}>All</button>
           {leagues.map(lg => (
-            <button key={lg} class={`ml-filter-btn${activeLeague === lg ? ' active' : ''}`} onClick={() => setActiveLeague(lg)}>{lg}</button>
+            <button key={lg} className={`ml-filter-btn${activeLeague === lg ? ' active' : ''}`} onClick={() => setActiveLeague(lg)}>{lg}</button>
           ))}
         </div>
       )}
 
-      {!loading && (
-        <a href={config.apkButton.url} class="league-apk-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          {config.apkButton.text}
-        </a>
-      )}
-
-      {loading && <div class="ml-loading">Loading matches...</div>}
-      {!loading && filtered.length === 0 && <div class="ml-empty">No upcoming matches found.</div>}
+      {loading && <div className="ml-loading">Loading matches...</div>}
+      {!loading && filtered.length === 0 && <div className="ml-empty">No upcoming matches found.</div>}
 
       {!loading && [...new Set(filtered.map(m => m.league))].map(lg => (
         <div key={lg}>
           {filtered.filter(m => m.league === lg).flatMap((m, i) => {
             const status = getStatus(m.start, m.duration);
             const card = (
-              <a key={`card-${i}`}               href={m.details_url || '#'} class="match-card">
-                <div class="match-card-content">
-                  <div class="match-row-teams">
-                    <div class="match-team home">
+              <a key={`card-${i}`}               href={m.details_url || '#'} className="match-card">
+                <div className="match-card-content">
+                  <div className="match-row-teams">
+                    <div className="match-team home">
                       <img src={m.team1_logo || placeholderImg} alt={m.team1} loading="lazy" />
-                      <span class="match-team-name">{m.team1}</span>
+                      <span className="match-team-name">{m.team1}</span>
                     </div>
-                    <div class="match-center">
-                      <span class="match-time">{formatLocalTime(m.start)}</span>
-                      <span class={`ml-status ${status.cls}`}>{status.text}</span>
+                    <div className="match-center">
+                      <span className="match-time">{formatLocalTime(m.start)}</span>
+                      <span className={`ml-status ${status.cls}`}>{status.text}</span>
                     </div>
-                    <div class="match-team away">
-                      <span class="match-team-name">{m.team2}</span>
+                    <div className="match-team away">
+                      <span className="match-team-name">{m.team2}</span>
                       <img src={m.team2_logo || placeholderImg} alt={m.team2} loading="lazy" />
                     </div>
                   </div>
-                  <div class="match-league-bar">
+                  <div className="match-league-bar">
                     <p>{m.displayLeague || m.league || m.competition || m.league_name || ''}</p>
                   </div>
                 </div>

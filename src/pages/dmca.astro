@@ -3,16 +3,16 @@ import Layout from '../layouts/Layout.astro';
 import { config } from '../config';
 ---
 
-<Layout title={`DMCA - ${config.site.name}`}>
+<Layout title={`DMCA - ${config.site.name} | ${config.site.tagline}`}>
   <div class="page-wrap">
     <style>
       .page-wrap { max-width: 800px; margin: 0 auto; padding: 40px 16px; }
-      h1 { font-size: 32px; font-weight: 800; color: #222; margin-bottom: 24px; }
-      h2 { font-size: 20px; font-weight: 700; color: #333; margin: 24px 0 12px; }
-      p { color: #555; line-height: 1.8; margin-bottom: 12px; font-size: 15px; }
+      h1 { font-size: 32px; font-weight: 800; color: #e0e0e0; margin-bottom: 24px; }
+      h2 { font-size: 20px; font-weight: 700; color: #ccc; margin: 24px 0 12px; }
+      p { color: #aaa; line-height: 1.8; margin-bottom: 12px; font-size: 15px; }
     </style>
     <h1>DMCA Notice</h1>
-    <p>YoSinTV respects the intellectual property rights of others. We do not host any media content on our servers. All streams are embedded from third-party sources.</p>
+    <p>Footem respects the intellectual property rights of others. We do not host any media content on our servers. All streams are embedded from third-party sources.</p>
     <h2>Notification of Infringement</h2>
     <p>If you believe that any content on our site violates your copyright, please contact us with the following information:</p>
     <p>- A description of the copyrighted work you claim has been infringed<br/>
@@ -21,7 +21,7 @@ import { config } from '../config';
     - A statement that you have a good faith belief that the use is not authorized<br/>
     - A statement that the information in your notice is accurate</p>
     <h2>Contact for DMCA Notices</h2>
-    <p>Email: <a href="mailto:contact@yosintv.me" style="color:#ff0037;">contact@yosintv.me</a></p>
+    <p>Email: <a href="mailto:contact@footem.co" style="color:#ff0037;">contact@footem.co</a></p>
     <p>We will respond to all valid DMCA notices and take appropriate action, including removing the infringing content.</p>
   </div>
 </Layout>

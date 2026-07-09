@@ -2,47 +2,36 @@
 import Layout from '../layouts/Layout.astro';
 import MatchList from '../components/MatchList';
 import Sidebar from '../components/Sidebar';
-
 import LatestNews from '../components/LatestNews';
+import Player from '../components/Player.astro';
 import { config } from '../config';
 ---
 
-<Layout   title={`Football Matches - ${config.site.name}`}>
-  <div class="page-wrap">
+<Layout title={`${config.site.name} - ${config.site.tagline}`}>
+  <div class="site-content">
     <style>
-      .page-wrap {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 16px;
-        background: #fff;
-      }
+      .page-layout { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
       .content-sidebar-layout {
         display: grid;
         grid-template-columns: 1fr;
         gap: 32px;
-        padding: 24px 0 0;
+        padding: 32px 0 0;
         min-width: 0;
       }
-      .content-sidebar-layout > * {
-        min-width: 0;
-      }
+      .content-sidebar-layout > * { min-width: 0; }
       @media (min-width: 900px) {
-        .content-sidebar-layout {
-          grid-template-columns: 1fr 320px;
-        }
+        .content-sidebar-layout { grid-template-columns: 1fr 320px; }
       }
     </style>
-
-    <div class="content-sidebar-layout">
-      <div>
-        <MatchList
-          apiUrl={config.api.football}
-          title="Football Matches"
-          client:only="react"
-        />
+    <div class="page-layout">
+      <div class="content-sidebar-layout">
+        <div>
+          <MatchList apiUrl={config.api.football} title="" client:only="react" />
+        </div>
+        <Sidebar client:only="react" />
       </div>
-      <Sidebar client:only="react" />
+      <LatestNews client:only="react" />
     </div>
-    <LatestNews client:only="react" />
   </div>
+  <Player />
 </Layout>

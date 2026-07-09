@@ -3,6 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 import Sidebar from '../../components/Sidebar';
 import LatestNews from '../../components/LatestNews';
 import ShareButtons from '../../components/ShareButtons';
+import Player from '../../components/Player.astro';
+import type { Config } from '../../config';
 import { config } from '../../config';
 
 export async function getStaticPaths() {
@@ -29,7 +31,7 @@ const readingTime = article?.content
   : 1;
 ---
 
-<Layout title={article ? `${article.title} - ${config.site.name}` : `Story - ${config.site.name}`} description={article?.snippet}>
+<Layout title={article ? `${article.title} - ${config.site.name} | ${config.site.tagline}` : `Story - ${config.site.name} | ${config.site.tagline}`} description={article?.snippet}>
   <style>
     .story-page-wrap {
       max-width: 1200px;
@@ -56,8 +58,8 @@ const readingTime = article?.content
       padding-bottom: 0;
     }
     .story-article {
-      background: #fff;
-      border: 1px solid #e0e0e0;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
       border-radius: 12px;
       overflow: hidden;
     }
@@ -69,35 +71,36 @@ const readingTime = article?.content
       margin-bottom: 16px;
     }
     .story-title {
-      font-size: 32px; font-weight: 800; color: #222;
+      font-size: 32px; font-weight: 800; color: #e0e0e0;
       line-height: 1.3; margin-bottom: 16px;
     }
     .story-meta {
       display: flex; flex-wrap: wrap; align-items: center; gap: 20px;
       color: #888; font-size: 14px;
       padding-bottom: 20px;
+      border-bottom: 1px solid #2a2a2a;
     }
     .story-meta span { display: flex; align-items: center; gap: 6px; }
     .story-share {
       padding: 16px 0 20px;
-      border-top: 1px solid #e0e0e0;
+      border-top: 1px solid #2a2a2a;
     }
     .story-content {
-      padding: 32px; font-size: 16px; line-height: 1.8; color: #444;
+      padding: 32px; font-size: 16px; line-height: 1.8; color: #ccc;
     }
     .story-content p { margin-bottom: 20px; }
     .story-tags {
       padding: 0 32px 32px; display: flex; flex-wrap: wrap; gap: 8px;
     }
     .story-tag {
-      background: #f0f0f0; color: #666; padding: 6px 14px;
+      background: #2a2a2a; color: #aaa; padding: 6px 14px;
       border-radius: 20px; font-size: 12px; font-weight: 600;
     }
     .story-not-found {
       text-align: center; padding: 60px 0;
     }
     .story-not-found h2 {
-      font-size: 24px; color: #222; margin-bottom: 12px;
+      font-size: 24px; color: #e0e0e0; margin-bottom: 12px;
     }
     .story-not-found a {
       color: #ff0037; text-decoration: none;
@@ -157,4 +160,5 @@ const readingTime = article?.content
     </div>
     <LatestNews client:only="react" />
   </div>
+  <Player />
 </Layout>

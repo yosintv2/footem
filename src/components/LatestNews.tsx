@@ -23,11 +23,11 @@ export default function LatestNews() {
   }, []);
 
   return (
-    <div class="ln-wrap">
+    <div className="ln-wrap">
       <style>{`
         .ln-wrap {
-          background: #fff;
-          border: 1px solid #e0e0e0;
+          background: #1a1a1a;
+          border: 1px solid #2a2a2a;
           border-radius: 8px;
           overflow: hidden;
           margin-bottom: 40px;
@@ -38,7 +38,7 @@ export default function LatestNews() {
         .ln-header h1 {
           font-size: 28px;
           font-weight: 800;
-          color: #222;
+          color: #e0e0e0;
           margin-bottom: 16px;
         }
         .ln-meta {
@@ -49,7 +49,7 @@ export default function LatestNews() {
           color: #888;
           font-size: 14px;
           padding-bottom: 20px;
-          border-bottom: 1px solid #e0e0e0;
+          border-bottom: 1px solid #2a2a2a;
         }
         .ln-meta span {
           display: flex;
@@ -58,7 +58,7 @@ export default function LatestNews() {
         }
         .ln-item {
           padding: 16px 32px;
-          border-bottom: 1px solid #eee;
+          border-bottom: 1px solid #2a2a2a;
           transition: background 0.15s;
           display: block;
           text-decoration: none;
@@ -68,7 +68,7 @@ export default function LatestNews() {
           border-bottom: none;
         }
         .ln-item:hover {
-          background: #fafafa;
+          background: #222;
         }
         .ln-label {
           display: inline-block;
@@ -85,7 +85,7 @@ export default function LatestNews() {
         .ln-title {
           font-size: 16px;
           font-weight: 600;
-          color: #333;
+          color: #e0e0e0;
           line-height: 1.4;
           margin-bottom: 4px;
         }
@@ -94,13 +94,13 @@ export default function LatestNews() {
         }
         .ln-snippet {
           font-size: 14px;
-          color: #777;
+          color: #aaa;
           line-height: 1.5;
           margin-bottom: 6px;
         }
         .ln-meta-bottom {
           font-size: 12px;
-          color: #999;
+          color: #888;
         }
         .ln-meta-bottom span {
           margin-right: 12px;
@@ -111,9 +111,9 @@ export default function LatestNews() {
         }
       `}</style>
 
-      <div class="ln-header">
+      <div className="ln-header">
         <h1>Latest News</h1>
-        <div class="ln-meta">
+        <div className="ln-meta">
           <span>📅 {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
           <span>👤 Admin</span>
           <span>{articles.length} articles</span>
@@ -121,11 +121,11 @@ export default function LatestNews() {
       </div>
 
       {articles.map((article) => (
-          <a key={article.slug} href={resolvePath(`/story/${article.slug}`)} class="ln-item">
-          {article.labels?.[0] && <span class="ln-label">{article.labels[0]}</span>}
-          <div class="ln-title">{article.title}</div>
-          <div class="ln-snippet">{article.snippet}</div>
-          <div class="ln-meta-bottom">
+          <a key={article.slug} href={resolvePath(`/story/${article.slug}`)} className="ln-item">
+          {article.labels?.[0] && <span className="ln-label">{article.labels[0]}</span>}
+          <div className="ln-title">{article.title}</div>
+          <div className="ln-snippet">{article.snippet}</div>
+          <div className="ln-meta-bottom">
             <span>{article.author}</span>
             <span>{article.publishedAt}</span>
           </div>

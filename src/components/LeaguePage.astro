@@ -1,14 +1,25 @@
 ---
+// Shared league page template — renders matches + sidebar + news + player
 import Layout from '../layouts/Layout.astro';
 import MatchList from '../components/MatchList';
 import Sidebar from '../components/Sidebar';
 import LatestNews from '../components/LatestNews';
-import WhatsAppPopup from '../components/WhatsAppPopup';
-import Player from '../components/Player.astro';
+import Player from './Player.astro';
 import { config } from '../config';
+
+export interface Props {
+  title: string;
+  leagueKey: string;
+  apiKey?: string;
+  pageTitle?: string;
+}
+
+const { title, apiKey = 'football', pageTitle } = Astro.props;
+const apiUrl = config.api[apiKey as keyof typeof config.api] as string || config.api.football;
+const seoTitle = pageTitle || `${title} - ${config.site.name} | ${config.site.tagline}`;
 ---
 
-<Layout title={`${config.site.name} - ${config.site.tagline}`}>
+<Layout title={seoTitle}>
   <div class="site-content">
     <style>
       .page-layout { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
@@ -27,13 +38,12 @@ import { config } from '../config';
     <div class="page-layout">
       <div class="content-sidebar-layout">
         <div>
-          <MatchList apiUrl={config.api.football} title="" client:only="react" />
+          <MatchList apiUrl={apiUrl} title={title} client:only="react" />
         </div>
         <Sidebar client:only="react" />
       </div>
       <LatestNews client:only="react" />
     </div>
-    <WhatsAppPopup client:only="react" />
   </div>
-  <Player />
+  <Player brand={config.player.brand} />
 </Layout>

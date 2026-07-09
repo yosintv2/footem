@@ -8,11 +8,11 @@ export interface Props {
   title?: string;
   description?: string;
   image?: string;
+  robots?: string;
 }
 
-const { title = `${config.site.name} - ${config.site.tagline}`, description = config.site.description, image } = Astro.props;
+const { title = `${config.site.name} - ${config.site.tagline}`, description = config.site.description, image, robots } = Astro.props;
 ---
-
 <!DOCTYPE html>
 <html lang={config.site.locale}>
 <head>
@@ -28,17 +28,67 @@ const { title = `${config.site.name} - ${config.site.tagline}`, description = co
   <meta property="og:site_name" content={config.site.name} />
   <meta name="twitter:card" content={config.site.twitterCard} />
   {image && <meta property="og:image" content={image} />}
-  <meta name="robots" content={config.site.robots} />
+  <meta name="robots" content={robots || config.site.robots} />
   <link rel="canonical" href={config.site.url} />
   <link rel="icon" type="image/x-icon" href={config.site.favicon} />
   <link rel="preconnect" href={config.fonts.preconnect[0]} />
   <link rel="preconnect" href={config.fonts.preconnect[1]} crossorigin />
   <link href={config.fonts.css} rel="stylesheet" />
   <link rel="alternate" type="application/rss+xml" title={`${config.site.name} &raquo; Feed`} href={config.links.rss} />
-
+  <script is:inline>
+    (function(){
+      var params = new URLSearchParams(window.location.search);
+      var src = params.get('src');
+      if (src) {
+        document.documentElement.classList.add('player-mode');
+        var meta = document.querySelector('meta[name="robots"]');
+        if (meta) meta.content = 'noindex, nofollow';
+        var canonical = document.querySelector('link[rel="canonical"]');
+        if (canonical) canonical.href = window.location.origin + window.location.pathname;
+        function fpInit() {
+          var iframe = document.getElementById('fp-iframe');
+          if (iframe) {
+            iframe.src = src;
+            iframe.onload = function() {
+              var loader = document.getElementById('fp-loader');
+              if (loader) loader.classList.add('hide');
+            };
+            iframe.onerror = function() {
+              var err = document.getElementById('fp-error');
+              if (err) err.classList.add('show');
+              var loader = document.getElementById('fp-loader');
+              if (loader) loader.classList.add('hide');
+            };
+          }
+          var ms = document.createElement('script');
+          ms.src = 'https://suii.pages.dev/monetag.js';
+          document.body.appendChild(ms);
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', fpInit);
+        } else {
+          fpInit();
+        }
+      }
+    })();
+    function fpShare() {
+      var src = new URLSearchParams(window.location.search).get('src');
+      if (src && navigator.clipboard) {
+        navigator.clipboard.writeText(window.location.href).then(function() {
+          alert('Link copied!');
+        });
+      }
+    }
+  </script>
+  <style is:global>
+    .player-mode .yosin-header,
+    .player-mode .yosin-footer,
+    .player-mode .site-content { display: none !important; }
+    .player-mode [id="footem-player"] { display: flex !important; }
+    .player-mode body { padding-top: 0 !important; }
+  </style>
 </head>
 <body>
-
   <div style="position:fixed;top:0;left:0;width:100%;height:1px;overflow:hidden;visibility:hidden;z-index:9999;">
     <script type="text/javascript" src="//widget.supercounters.com/ssl/online_i.js"></script>
     <script type="text/javascript">sc_online_i(1714446,"ffffff","ffffff");</script>

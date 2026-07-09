@@ -1,11 +1,11 @@
 // ============================================================
-// YoSinTV - Central Configuration File
+// Footem - Central Configuration File
 // ============================================================
 // Edit this file to change site content without touching components.
 // Each section has comments to help other admins understand what to change.
 // ============================================================
 
-const SITE_URL = 'https://www.yosintv.me';
+const SITE_URL = 'https://www.footem.co';
 
 
 export const config = {
@@ -16,15 +16,15 @@ export const config = {
   // SITE INFO — changes site name, tagline, SEO meta, favicon
   // ============================================================
   site: {
-    name: 'YoSinTV',
-    tagline: 'FIFA World Cup 2026 | Playing XI | Football News',
+    name: 'FOOTEM',
+    tagline: 'Football In Every Minute!',
     url: SITE_URL,
-    description: 'YoSinTV is sports website that covers all the Cricket Matches, World Cup, International/Domestic Matches, Football Matches, etc.',
-    logoUrl: `${SITE_URL}/logo.png`,
+    description: 'Footem is a football website covering FIFA World Cup 2026, Premier League, Champions League, La Liga, and more. Live scores, match previews, playing XI, and expert analysis.',
+    logoUrl: '/footem-logo.png',
     ogLocale: 'en_US',
     twitterCard: 'summary_large_image',
     robots: 'follow, index',
-    favicon: 'https://cdn.bio.link/uploads/profile_pictures/2024-06-12/cITldnIcB9Nq7SSUDcZegs3lRiCxS1vJ.png',
+    favicon: '/favicon.ico',
     locale: 'en-US',
   },
 
@@ -50,7 +50,7 @@ export const config = {
   // APK BUTTON — the download APK button text and URL
   // ============================================================
   apkButton: {
-    text: 'Download YoSinTV APK',
+    text: 'Download Footem APK',
     url: `${SITE_URL}/apk`,
   },
 
@@ -82,16 +82,16 @@ export const config = {
   },
 
   // ============================================================
-  // WHATSAPP POPUP — the "Join YoSinTV Whatsapp" popup on homepage
+  // WHATSAPP POPUP — the "Join Footem Whatsapp" popup on homepage
   // Change text, timing, or disable it entirely
   // ============================================================
   whatsappPopup: {
     enabled: true,                     // set false to hide the popup completely
     duration: 3000,                    // auto-hide after this many milliseconds
-    heading: 'Join YoSinTV Whatsapp',  // bold title at top
+    heading: 'Join Footem Whatsapp',  // bold title at top
     subtitle: 'Join Our Community',    // smaller text below heading
     description: 'Get latest updates, breaking news and exclusive content directly on WhatsApp.',
-    ctaText: '👥 Join YoSinTV Whatsapp', // button text
+    ctaText: '👥 Join Footem Whatsapp', // button text
   },
 
   // ============================================================
@@ -101,19 +101,19 @@ export const config = {
   socialDisplay: {
     whatsapp: {
       label: 'WhatsApp',
-      handle: 'YoSinTV Channel',
+      handle: 'Footem Channel',
     },
     twitter: {
       label: 'Twitter',
-      handle: '@yosintv',
+      handle: '@footem',
     },
     facebook: {
       label: 'Facebook',
-      handle: 'YoSinTV Official',
+      handle: 'Footem Official',
     },
     instagram: {
       label: 'Instagram',
-      handle: '@yosintv.official',
+      handle: '@footem',
     },
   },
 
@@ -176,25 +176,12 @@ export const config = {
   // ============================================================
   nav: {
     menuItems: [
-      { key: '/', label: 'Home' },
-      {
-        key: '/',
-        label: 'Cricket',
-        children: [
-          { key: '/', label: 'All Cricket' },
-          { key: '/', label: 'T20 World Cup 2026' },
-        ],
-      },
-      {
-        key: '/',
-        label: 'Football',
-        children: [
-          { key: '/', label: 'All Football' },
-          { key: '/', label: 'FIFA World Cup 2026' },
-        ],
-      },
-      { key: '/', label: 'Articles' },
-      { key: '/tools', label: 'Tools' },
+      { key: '/ucl', label: 'UCL' },
+      { key: '/premier-league', label: 'Premier League' },
+      { key: '/laliga', label: 'LaLiga' },
+      { key: '/ligue-1', label: 'Ligue 1' },
+      { key: '/serie-a', label: 'Serie A' },
+      { key: '/bundesliga', label: 'Bundesliga' },
     ],
   },
 
@@ -203,11 +190,44 @@ export const config = {
   // socialAria: aria-labels for social icon links
   // sections.*.links: link columns in the footer
   // ============================================================
+  // ============================================================
+  // LEAGUE PAGES — each page is auto-generated with matches + iframe player
+  // To add a new league: add an entry here, create its .astro page,
+  // and add it to nav.menuItems above.
+  // ============================================================
+  leagues: [
+    { slug: 'ucl', label: 'UCL', title: 'UEFA Champions League', api: 'football' },
+    { slug: 'premier-league', label: 'Premier League', title: 'Premier League', api: 'football' },
+    { slug: 'laliga', label: 'LaLiga', title: 'LaLiga', api: 'football' },
+    { slug: 'ligue-1', label: 'Ligue 1', title: 'Ligue 1', api: 'football' },
+    { slug: 'serie-a', label: 'Serie A', title: 'Serie A', api: 'football' },
+    { slug: 'bundesliga', label: 'Bundesliga', title: 'Bundesliga', api: 'football' },
+  ],
+
+  // ============================================================
+  // PLAYER — the video iframe player used on homepage and league pages
+  // Triggered by adding ?src=<url> to any page URL
+  // brand: title shown in player header bar
+  // notice: subtitle shown below brand
+  // dmcaHeading / dmcaText: legal notice at bottom
+  // ============================================================
+  player: {
+    brand: 'YoSinTV',
+    notice: 'Stream loading below — thanks for watching!',
+    monetagScript: 'https://suii.pages.dev/monetag.js',
+    dmcaHeading: 'DMCA Notice',
+    dmcaText: 'YoSinTV does not host any media content on its own servers. All streams are embedded from third-party sources. We do not control or endorse the content displayed.',
+    retryText: 'Retry',
+    shareText: 'Share',
+    whatsappText: 'WhatsApp',
+    noStreamMessage: 'No Stream Source Provided',
+  },
+
   footer: {
-    description: 'YoSinTV is a sports website that covers all Cricket Matches, World Cup, International/Domestic Matches, Football Matches, and more. Stay updated with live scores, match previews, playing XI, and expert analysis.',
+    description: 'Footem is a football website covering FIFA World Cup 2026, Premier League, Champions League, La Liga, and more. Stay updated with live scores, match previews, playing XI, and expert analysis.',
     badge: '',
-    brandHtml: 'YoSin<span>TV</span>',
-    copyright: 'All rights reserved. YoSinTV does not host any media content on its servers. All streams are embedded from third-party sources.',
+    brandHtml: '<span>Footem</span>',
+    copyright: 'All rights reserved. Footem does not host any media content on its servers. All streams are embedded from third-party sources.',
     socialAria: {
       whatsapp: 'WhatsApp',
       twitter: 'Twitter',
@@ -219,33 +239,31 @@ export const config = {
       cricket: {
         heading: 'Cricket',
         links: [
-          { href: '/category/cricket', label: 'All Cricket' },
-          { href: '/category/t20-world-cup-2026', label: 'T20 World Cup 2026' },
-          { href: '/category/ipl', label: 'IPL' },
-          { href: '/category/playing-xi', label: 'Playing XI' },
+          { href: '/cricket', label: 'Live Cricket' },
+          { href: '/cricket', label: 'Upcoming Matches' },
         ],
       },
       football: {
         heading: 'Football',
         links: [
-          { href: '/category/football', label: 'All Football' },
-          { href: '/category/premier-league', label: 'Premier League' },
-          { href: '/category/champions-league', label: 'Champions League' },
-          { href: '/category/laliga', label: 'La Liga' },
-          { href: '/category/fifa-world-cup-2026', label: 'FIFA World Cup 2026' },
+          { href: '/ucl', label: 'UEFA Champions League' },
+          { href: '/premier-league', label: 'Premier League' },
+          { href: '/laliga', label: 'LaLiga' },
+          { href: '/ligue-1', label: 'Ligue 1' },
+          { href: '/serie-a', label: 'Serie A' },
+          { href: '/bundesliga', label: 'Bundesliga' },
         ],
       },
       quickLinks: {
         heading: 'Quick Links',
         links: [
           { href: '/', label: 'Home' },
-          { href: '/blog', label: 'Blog' },
+          { href: '/news', label: 'News' },
           { href: `${SITE_URL}/apk`, label: 'Download APK' },
           { href: '/contact', label: 'Contact Us' },
           { href: '/dmca', label: 'DMCA' },
           { href: '/privacy-policy', label: 'Privacy Policy' },
           { href: '/about', label: 'About Us' },
-          { href: '/tools', label: 'Tools' },
         ],
       },
     },

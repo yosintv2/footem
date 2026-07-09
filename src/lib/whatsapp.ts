@@ -1,6 +1,6 @@
 import { config } from '../config';
 
-const CACHE_KEY = 'yosintv_whatsapp_url';
+const CACHE_KEY = 'footem_whatsapp_url';
 const CACHE_DURATION = 1000 * 60 * 60;
 
 interface CacheEntry {

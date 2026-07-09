@@ -3,16 +3,16 @@ import Layout from '../layouts/Layout.astro';
 import { config } from '../config';
 ---
 
-<Layout title={`About Us - ${config.site.name}`}>
+<Layout title={`About Us - ${config.site.name} | ${config.site.tagline}`}>
   <div class="page-wrap">
     <style>
       .page-wrap { max-width: 800px; margin: 0 auto; padding: 40px 16px; }
-      h1 { font-size: 32px; font-weight: 800; color: #222; margin-bottom: 24px; }
-      p { color: #555; line-height: 1.8; margin-bottom: 16px; font-size: 16px; }
+      h1 { font-size: 32px; font-weight: 800; color: #e0e0e0; margin-bottom: 24px; }
+      p { color: #aaa; line-height: 1.8; margin-bottom: 16px; font-size: 16px; }
     </style>
     <h1>About Us</h1>
     <p>{config.site.description}</p>
     <p>We provide live scores, match previews, playing XI, and expert analysis for cricket and football matches from around the world. Our goal is to keep sports fans updated with the latest happenings in the world of sports.</p>
-    <p>YoSinTV is committed to delivering accurate and timely sports coverage. We cover international and domestic cricket matches, football leagues, World Cup events, and more.</p>
+    <p>Footem is committed to delivering accurate and timely football coverage. We cover FIFA World Cup 2026, Premier League, Champions League, La Liga, and more.</p>
   </div>
 </Layout>

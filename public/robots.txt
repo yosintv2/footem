@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
-Sitemap: https://www.yosintv.me/sitemap.xml
+Disallow: /*?src=
+Sitemap: https://www.footem.co/sitemap.xml
 

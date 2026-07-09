@@ -2,19 +2,18 @@
 import Layout from '../layouts/Layout.astro';
 import MatchList from '../components/MatchList';
 import Sidebar from '../components/Sidebar';
-
 import LatestNews from '../components/LatestNews';
+import Player from '../components/Player.astro';
 import { config } from '../config';
 ---
 
-<Layout   title={`Cricket Matches - ${config.site.name}`}>
+<Layout title={`Cricket Matches - ${config.site.name} | ${config.site.tagline}`}>
   <div class="page-wrap">
     <style>
       .page-wrap {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 16px;
-        background: #fff;
       }
       .content-sidebar-layout {
         display: grid;
@@ -46,4 +45,5 @@ import { config } from '../config';
     </div>
     <LatestNews client:only="react" />
   </div>
+  <Player />
 </Layout>
