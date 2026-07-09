@@ -63,9 +63,9 @@ export const config = {
   links: {
     social: {
       whatsapp: 'https://www.whatsapp.com/channel/0029Vb7ikzn9hXF5ec0uUI0H',
-      twitter: 'https://twitter.com/yosintv',
-      facebook: 'https://facebook.com/yosintv.official',
-      instagram: 'https://instagram.com/yosintv.official',
+      twitter: '',
+      facebook: '',
+      instagram: '',
     },
     apk: `${SITE_URL}/apk`,
     contact: '/contact',
@@ -150,7 +150,7 @@ export const config = {
     pageTitle: 'Contact Us - ',
     heading: 'Contact Us',
     description: 'Have questions, feedback, or suggestions? We\'d love to hear from you. Reach out to us through any of the channels below.',
-    email: 'mail.yosintv@gmail.com',
+    email: '',
     labels: {
       email: 'Email:',
       whatsapp: 'WhatsApp:',
@@ -214,11 +214,11 @@ export const config = {
   // dmcaHeading / dmcaText: legal notice at bottom
   // ============================================================
   player: {
-    brand: 'YoSinTV',
+    brand: 'Footem',
     notice: 'Stream loading below — thanks for watching!',
     monetagScript: 'https://suii.pages.dev/monetag.js',
     dmcaHeading: 'DMCA Notice',
-    dmcaText: 'YoSinTV does not host any media content on its own servers. All streams are embedded from third-party sources. We do not control or endorse the content displayed.',
+    dmcaText: 'Footem does not host any media content on its own servers. All streams are embedded from third-party sources. We do not control or endorse the content displayed.',
     retryText: 'Retry',
     shareText: 'Share',
     whatsappText: 'WhatsApp',
