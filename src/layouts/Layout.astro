@@ -9,9 +9,10 @@ export interface Props {
   description?: string;
   image?: string;
   robots?: string;
+  keywords?: string;
 }
 
-const { title = `${config.site.name} - ${config.site.tagline}`, description = config.site.description, image, robots } = Astro.props;
+const { title = `${config.site.name} - ${config.site.tagline}`, description = config.site.description, image, robots, keywords } = Astro.props;
 const showCounter = config.features.showVisitorCounter;
 ---
 <!DOCTYPE html>
@@ -21,7 +22,7 @@ const showCounter = config.features.showVisitorCounter;
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  <meta name="keywords" content={config.site.keywords} />
+  <meta name="keywords" content={keywords || config.site.keywords} />
   <meta property="og:locale" content={config.site.ogLocale} />
   <meta property="og:type" content="website" />
   <meta property="og:title" content={title} />

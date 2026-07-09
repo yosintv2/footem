@@ -17,9 +17,10 @@ export interface Props {
 const { title, apiKey = 'football', pageTitle } = Astro.props;
 const apiUrl = config.api[apiKey as keyof typeof config.api] as string || config.api.football;
 const seoTitle = pageTitle || `${title} - ${config.site.name} | ${config.site.tagline}`;
+const keywords = `${title}, ${config.site.keywords}`;
 ---
 
-<Layout title={seoTitle}>
+<Layout title={seoTitle} keywords={keywords}>
   <div class="site-content">
     <style>
       .page-layout { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
