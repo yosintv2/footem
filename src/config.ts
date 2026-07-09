@@ -215,7 +215,7 @@ export const config = {
   // dmcaHeading / dmcaText: legal notice at bottom
   // ============================================================
   player: {
-    brand: 'Footem',
+    brand: 'YoSinTV',
     notice: 'Stream loading below — thanks for watching!',
     monetagScript: 'https://suii.pages.dev/monetag.js',
     dmcaHeading: 'DMCA Notice',
