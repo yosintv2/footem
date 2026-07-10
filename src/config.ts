@@ -47,7 +47,6 @@ export const config = {
     showLeagueContainer: true,        // show/hide league grid on homepage
     showWhatsAppPopup: false,          // show/hide WhatsApp popup on homepage
     showVisitorCounter: true,         // show/hide Whos visitor stats counter
-    openSrcInNewTab: true,           // when true, ?src= URL also opens in a new tab
   },
 
   // ============================================================
@@ -225,7 +224,6 @@ export const config = {
     shareText: 'Share',
     whatsappText: 'WhatsApp',
     noStreamMessage: 'No Stream Source Provided',
-    newTabUrl: 'https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiAxa-P8seVAxUVh1YBHe30NYU4ChAWegQINRAB&url=https%3A%2F%2Fwww.footem.co%2F&usg=AOvVaw21DsQIqwzvJe1aCVXp5J_S&opi=89978449', // URL to open in new tab when ?src= is present; leave empty to use the src URL itself
   },
 
   footer: {

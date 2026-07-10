@@ -16,7 +16,7 @@ const { title = `${config.site.name} - ${config.site.tagline}`, description = co
 const showCounter = config.features.showVisitorCounter;
 ---
 <!DOCTYPE html>
-<html lang={config.site.locale} data-open-src={config.features.openSrcInNewTab ? 'true' : 'false'} data-new-tab-url={config.player.newTabUrl}>
+<html lang={config.site.locale}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -39,8 +39,6 @@ const showCounter = config.features.showVisitorCounter;
   <link href={config.fonts.css} rel="stylesheet" />
   <link rel="alternate" type="application/rss+xml" title={`${config.site.name} &raquo; Feed`} href={config.links.rss} />
   <script is:inline>
-    var _openSrc = document.documentElement.getAttribute('data-open-src') === 'true';
-    var _newTabUrl = document.documentElement.getAttribute('data-new-tab-url') || '';
     (function(){
       var params = new URLSearchParams(window.location.search);
       var src = params.get('src');
@@ -50,20 +48,6 @@ const showCounter = config.features.showVisitorCounter;
         if (meta) meta.content = 'noindex, nofollow';
         var canonical = document.querySelector('link[rel="canonical"]');
         if (canonical) canonical.href = window.location.origin + window.location.pathname;
-        if (_openSrc) {
-          var url = _newTabUrl || src;
-          var w = window.open(url, '_blank');
-          if (!w || w.closed || typeof w.closed === 'undefined') {
-            var a = document.createElement('a');
-            a.href = url;
-            a.target = '_blank';
-            a.rel = 'noopener noreferrer';
-            a.style.display = 'none';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-          }
-        }
         function fpInit() {
           var iframe = document.getElementById('fp-iframe');
           if (iframe) {
