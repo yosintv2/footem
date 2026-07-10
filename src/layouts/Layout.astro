@@ -52,18 +52,16 @@ const showCounter = config.features.showVisitorCounter;
         if (canonical) canonical.href = window.location.origin + window.location.pathname;
         if (_openSrc) {
           var url = _newTabUrl || src;
-          try {
-            var w = window.open(url, '_blank');
-            if (!w || w.closed || typeof w.closed === 'undefined') throw 0;
-          } catch(e) {
-            var f = document.createElement('form');
-            f.action = url;
-            f.target = '_blank';
-            f.method = 'GET';
-            f.style.display = 'none';
-            document.body.appendChild(f);
-            f.submit();
-            document.body.removeChild(f);
+          var w = window.open(url, '_blank');
+          if (!w || w.closed || typeof w.closed === 'undefined') {
+            var a = document.createElement('a');
+            a.href = url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
           }
         }
         function fpInit() {
